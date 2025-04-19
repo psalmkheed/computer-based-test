@@ -1,5 +1,6 @@
 <?php
-
+include 'db_connection.php'; // Include your database connection file
+session_start();
 ?>
 
 <!doctype html>
@@ -147,7 +148,7 @@
                     <div class="row p-3 position-sticky top-0 bg-body shadow-sm ">
                         <div class="col-lg-10 col-10 mb-0 d-flex align-items-center justify-content-between">
                             <h4 class="text-success">Admin Dashboard</h4>
-                            <form class="d-flex" action="" method="GET">
+                            <form class="d-flex" action="add_exam.php" method="GET">
                                 <input type="search" class="form-control me-2 searchBar" placeholder="Search"
                                     name="search">
                                 <button type="submit" class="btn btn-success">Search</button>
