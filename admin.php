@@ -28,12 +28,17 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: #198754 #fff;
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: "Poppins", sans-serif;
             font-size: 18px;
             font-weight: 500;
+            height: 100vh;
+            overflow-X: hidden;
         }
 
         /* media query */
@@ -54,11 +59,30 @@
         }
 
         .sidebar {
-            height: 100vh;
+            max-height: 100vh;
+            font-size: inherit;
+        }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                height: auto;
+                font-size: 14px;
+            }
+
+        }
+
+        @media screen and (max-width: 991.33px) {
+            .sidebar {
+                height: auto;
+
+
+            }
+
+
         }
 
         .main {
-            height: 100vh;
+            height: 50vh;
         }
 
         .sidebar ul li {
@@ -74,6 +98,13 @@
             background-color: #1e7e34;
             cursor: pointer;
         }
+
+        .dashboardData {
+            min-height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -81,10 +112,10 @@
     <main>
         <div class="container-fluid">
             <div class="row">
-                <!-- div col-lg-2 -->
-                <div class="col-lg-2 bg-success p-0 sidebar">
+                <!-- div col-lg-2 for the sideBar with sticky position-->
+                <div class="col-lg-2 bg-success p-0 sidebar sticky-lg-top ">
                     <div class="brand p-3">
-                        <h3 class="text-warning">DO-ESTDOT</h3>
+                        <h3 class="text-warning" role="link">DO-ESTDOT</h3>
                     </div>
                     <ul class="list-group">
                         <li class="" id="manageStudent"><img src="images/icons/Edit.svg" class="icon" width="30"
@@ -99,31 +130,48 @@
                         </li>
                         <li class="" id="result"><img src="images/icons/result.png" class="icon" width="30"
                                 height="30">Result</li>
-                        <li class=""><img src="images/icons/logout.png" class="icon" width="30" height="30">Logout</li>
+                        <li class="" id="logout"><img src="images/icons/logout.png" class="icon" width="30"
+                                height="30">Logout</li>
                     </ul>
                 </div>
 
-                <!-- div col-lg-10 -->
-                <div class="col-lg-10 bg-body pt-0">
-                    <!-- this is the page header -->
-                    <div class="row border-bottom border-2 border-success-subtle p-3 fixed">
-                        <div class="col-lg-10 mb-0 ">
+                <!-- div col-lg-10 for the sticky header and mainContent div for loading pages dynamically-->
+                <div class="col-lg-10 bg-body">
+                    <!-- this is the sticky page header -->
+                    <div class="row p-3 position-sticky top-0 bg-body shadow-sm ">
+                        <div class="col-lg-10 col-10 mb-0 d-flex align-items-center justify-content-between">
+                            <h4 class="text-success">Admin Dashboard</h4>
                             <form class="d-flex" action="" method="GET">
-                                <input type="search" class="form-control w-50 me-2" placeholder="Search" name="search">
+                                <input type="search" class="form-control me-2" placeholder="Search" name="search">
                                 <button type="submit" class="btn btn-success">Search</button>
                             </form>
                         </div>
-                        <div class="col-lg-2 d-flex justify-content-end align-items-center">
+                        <div class="col-lg-2 col-2 d-flex justify-content-end align-items-center">
                             <img src="images/icons/user.png" width="30" height="30">
                         </div>
                     </div>
                     <!-- this is the div for loading pages dynamically using AJAX -->
-                    <div class="container-fluid d-flex py-2 px-0" id="mainContent">
 
-                        black
+                    <div class="container-fluid my-3" id="mainContent" style="height: 100vh;">
+                        <div class=" row row-cols-1 row-cols-sm-1 row-cols-lg-4 g-2 g-lg-3">
+                            <div class="col">
+                                <div class="p-2 dashboardData rounded bg-success-subtle text-success">COL 1</div>
+                            </div>
+                            <div class="col">
+                                <div class="p-2 dashboardData rounded bg-success-subtle text-success">COL 2</div>
+                            </div>
+                            <div class="col">
+                                <div class="p-2 dashboardData rounded bg-success-subtle text-success">COL 3</div>
+                            </div>
+                            <div class="col">
+                                <div class="p-2 dashboardData rounded bg-success-subtle text-success">COL 4</div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
     </main>
     <footer>
         <!-- place footer here -->
@@ -139,6 +187,10 @@
 </body>
 <script>
     $(document).ready(function () {
+
+        $("#logout").click(function () {
+            $("#mainContent").load("index.php");
+        });
         $("#manageStudent").click(function () {
             $("#mainContent").load("admin_manageStudent.php");
         });
