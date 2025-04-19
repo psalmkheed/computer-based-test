@@ -42,7 +42,7 @@
         .loginForm {
             /* background-color: #eee; */
             padding: 20px;
-            width: 35%;
+            min-width: 35%;
             border: 2px dotted #fff;
             border-radius: 5px;
             backdrop-filter: blur(10px);
@@ -64,7 +64,7 @@
                     <img src="images/logo.png" style="width: 75px; height: 75px;">
                 </div>
                 <div class="card-header">
-                    <h3 class="card-title text-center h3-hover">LOGIN</h3>
+                    <h3 class="card-title text-center h3-hover">LOGIN HERE</h3>
                 </div>
                 <div class="card-body ">
                     <!-- error validation div -->

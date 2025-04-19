@@ -15,13 +15,14 @@
 </head>
 
 <body>
-    <div class="container m-0">
+    <div class="container-fluid m-0 p-0">
         <div class="row">
-            <div class="col-12 col-lg-12 bg-success-subtle border-5 border-success border-start p-2">
+            <div class="col-12 col-lg-12 bg-success-subtle border border-1 border-success-subtle  p-3 rounded-3"
+                style="background-color: rgba(209, 231, 221, 0.6) !important;">
                 <h5 class="text-success m-0"> Add Student</h5>
             </div>
-
         </div>
+    </div>
 </body>
 
 </html>

@@ -105,6 +105,12 @@
             justify-content: center;
             align-items: center;
         }
+
+        .searchBar:focus {
+            outline: none !important;
+            border: 0;
+            box-shadow: 0 0 0 .25rem rgba(30, 126, 52, 0.25) !important;
+        }
     </style>
 </head>
 
@@ -142,7 +148,8 @@
                         <div class="col-lg-10 col-10 mb-0 d-flex align-items-center justify-content-between">
                             <h4 class="text-success">Admin Dashboard</h4>
                             <form class="d-flex" action="" method="GET">
-                                <input type="search" class="form-control me-2" placeholder="Search" name="search">
+                                <input type="search" class="form-control me-2 searchBar" placeholder="Search"
+                                    name="search">
                                 <button type="submit" class="btn btn-success">Search</button>
                             </form>
                         </div>
