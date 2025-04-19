@@ -20,14 +20,18 @@ session_start();
         <div class="row">
             <div class="col-12 col-lg-12 bg-success-subtle border border-1 border-success-subtle  p-3 rounded-3 d-flex justify-content-between align-items-center"
                 style="background-color: rgba(209, 231, 221, 0.6) !important;">
-                <h5 class="text-success m-0"> Uploaded Exams</h5>
+                <h5 class="text-success m-0"> Add & View Uploaded Exams</h5>
                 <div>
+
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addExamModal">Add
+                        Exam</button>
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#viewExamModal">View
                         Exam</button>
                 </div>
             </div>
             <div class="col-12 col-lg-12 mt-3 p-0">
-                <table class="table table-bordered table-striped table-hover table-responsive">
+                <table
+                    class="table table-bordered table-striped table-hover table-responsive table-sm table-light table-success-subtle">
                     <thead>
                         <tr>
                             <th>Exam ID</th>
@@ -64,39 +68,8 @@ session_start();
                         mysqli_close($conn);
 
                         ?>
-                        <!-- Example of a delete button for each exam -->
 
-                        <script>
-                            $(document).ready(function () {
-                                $('.delete-exam-btn').on('click', function (e) {
-                                    e.preventDefault();
-
-                                    if (!confirm('Are you sure you want to delete this exam?')) return;
-
-                                    const button = $(this);
-                                    const examId = button.data('id');
-
-                                    $.ajax({
-                                        url: 'delete_exam.php',
-                                        type: 'POST',
-                                        data: {
-                                            delete_exam: true,
-                                            exam_id: examId
-                                        },
-                                        success: function (response) {
-                                            alert(response);
-                                            button.closest('tr').fadeOut(); // remove row on success
-                                        },
-                                        error: function () {
-                                            alert('An error occurred while deleting the exam.');
-                                        }
-                                    });
-                                });
-                            });
-                        </script>
-
-
-
+                        <!-- Edit button script -->
                         <script>
                             function editExam(examId) {
                                 // Implement the edit functionality here
@@ -108,6 +81,44 @@ session_start();
                 </table>
             </div>
         </div>
+        <!-- Modal form for adding subjects -->
+        <div class="modal fade" id="addExamModal" tabindex="-1" aria-labelledby="addExamModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addExamModalLabel">Add Exam</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addExamForm">
+                            <div class="mb-3">
+                                <label for="examName" class="form-label">Exam Name</label>
+                                <input type="text" class="form-control" id="examName" name="examName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" class="form-control" id="subject" name="subject" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="date" name="date" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="time" class="form-label">Time</label>
+                                <input type="time" class="form-control" id="time" name="time" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="duration" class="form-label">Duration (in minutes)</label>
+                                <input type="number" class="form-control" id="duration" name="duration" required>
+                            </div>
+                            <button type="submit" class="btn btn-success" id="">Add Exam</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
+<script src="ajax.js"></script>
 
 </html>

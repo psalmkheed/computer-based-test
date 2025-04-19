@@ -130,10 +130,10 @@ session_start();
                             Student </li>
                         <li class="" id="addStaff"><img src="images/icons/staff.png" class="icon" width="30"
                                 height="30">Staff</li>
-                        <li class="" id="addExam"><img src="images/icons/Plus.svg" class="icon" width="30" height="30">
-                            Add Exam</li>
+                        <!-- <li class="" id="addExam"><img src="images/icons/Plus.svg" class="icon" width="30" height="30">
+                            Add Exam</li> -->
                         <li class="" id="viewExam"><img src="images/icons/Book.svg" class="icon" width="30"
-                                height="30">View Exam
+                                height="30">Add & View Exam
                         </li>
                         <li class="" id="result"><img src="images/icons/result.png" class="icon" width="30"
                                 height="30">Result</li>
