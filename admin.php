@@ -15,6 +15,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css">
+    <!-- AJAX CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
@@ -75,7 +78,6 @@
 </head>
 
 <body>
-
     <main>
         <div class="container-fluid">
             <div class="row">
@@ -103,8 +105,8 @@
 
                 <!-- div col-lg-10 -->
                 <div class="col-lg-10 bg-body pt-0">
-
-                    <div class="row border-bottom border-2 border-success p-3">
+                    <!-- this is the page header -->
+                    <div class="row border-bottom border-2 border-success-subtle p-3 fixed">
                         <div class="col-lg-10 mb-0 ">
                             <form class="d-flex" action="" method="GET">
                                 <input type="search" class="form-control w-50 me-2" placeholder="Search" name="search">
@@ -115,10 +117,13 @@
                             <img src="images/icons/user.png" width="30" height="30">
                         </div>
                     </div>
+                    <!-- this is the div for loading pages dynamically using AJAX -->
+                    <div class="container-fluid d-flex py-2 px-0" id="mainContent">
 
+                        black
+                    </div>
                 </div>
             </div>
-        </div>
     </main>
     <footer>
         <!-- place footer here -->
@@ -132,5 +137,24 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
         </script>
 </body>
+<script>
+    $(document).ready(function () {
+        $("#manageStudent").click(function () {
+            $("#mainContent").load("admin_manageStudent.php");
+        });
+        $("#addStaff").click(function () {
+            $("#mainContent").load("admin_addStaff.php");
+        });
+        $("#addExam").click(function () {
+            $("#mainContent").load("admin_addExam.php");
+        });
+        $("#viewExam").click(function () {
+            $("#mainContent").load("admin_viewExam.php");
+        });
+        $("#result").click(function () {
+            $("#mainContent").load("admin_result.php");
+        });
+    });
+</script>
 
 </html>
