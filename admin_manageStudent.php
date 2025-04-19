@@ -18,7 +18,7 @@
     <div class="container m-0">
         <div class="row">
             <div class="col-12 col-lg-12 bg-success-subtle border-5 border-success border-start p-2">
-                <h4 class="text-success m-0"> Add Student</h4>
+                <h5 class="text-success m-0"> Add Student</h5>
             </div>
 
         </div>

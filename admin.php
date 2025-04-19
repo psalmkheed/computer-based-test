@@ -115,7 +115,7 @@
                 <!-- div col-lg-2 for the sideBar with sticky position-->
                 <div class="col-lg-2 bg-success p-0 sidebar sticky-lg-top ">
                     <div class="brand p-3">
-                        <h3 class="text-warning" role="link">DO-ESTDOT</h3>
+                        <h3 class="text-warning" id="brand">DO-ESTDOT</h3>
                     </div>
                     <ul class="list-group">
                         <li class="" id="manageStudent"><img src="images/icons/Edit.svg" class="icon" width="30"
@@ -185,28 +185,6 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
         </script>
 </body>
-<script>
-    $(document).ready(function () {
-
-        $("#logout").click(function () {
-            $("#mainContent").load("index.php");
-        });
-        $("#manageStudent").click(function () {
-            $("#mainContent").load("admin_manageStudent.php");
-        });
-        $("#addStaff").click(function () {
-            $("#mainContent").load("admin_addStaff.php");
-        });
-        $("#addExam").click(function () {
-            $("#mainContent").load("admin_addExam.php");
-        });
-        $("#viewExam").click(function () {
-            $("#mainContent").load("admin_viewExam.php");
-        });
-        $("#result").click(function () {
-            $("#mainContent").load("admin_result.php");
-        });
-    });
-</script>
+<script src="script.js"></script>
 
 </html>
