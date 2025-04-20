@@ -36,7 +36,7 @@ session_start();
 
         body {
             font-family: "Poppins", sans-serif;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
             height: 100vh;
             overflow-X: hidden;

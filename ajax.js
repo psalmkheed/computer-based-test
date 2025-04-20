@@ -14,7 +14,7 @@ $(document).ready(function () {
       success: function (response) {
         // Handle success response
         alert("Exam added successfully!");
-        window.location.href = "admin.php#viewExam"; // Redirect to the view exam page
+        location.reload();
       },
       error: function (xhr, status, error) {
         // Handle error response
