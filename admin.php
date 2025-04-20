@@ -75,8 +75,6 @@ session_start();
         @media screen and (max-width: 991.33px) {
             .sidebar {
                 height: auto;
-
-
             }
 
 
@@ -105,12 +103,19 @@ session_start();
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+            gap: 1em;
         }
 
         .searchBar:focus {
             outline: none !important;
             border: 0;
             box-shadow: 0 0 0 .25rem rgba(30, 126, 52, 0.25) !important;
+        }
+
+        table,
+        .table {
+            font-size: 14px;
         }
     </style>
 </head>
@@ -158,15 +163,21 @@ session_start();
                             <img src="images/icons/user.png" width="30" height="30">
                         </div>
                     </div>
-                    <!-- this is the div for loading pages dynamically using AJAX -->
 
-                    <div class="container-fluid my-3" id="mainContent" style="height: 100vh;">
+                    <!-- this is the div for loading pages dynamically using AJAX -->
+                    <div class="container-fluid my-3" id="mainContent" style="height: auto;">
                         <div class=" row row-cols-1 row-cols-sm-1 row-cols-lg-4 g-2 g-lg-3">
                             <div class="col">
-                                <div class="p-2 dashboardData rounded bg-success-subtle text-success">COL 1</div>
+                                <div class="p-2 dashboardData rounded bg-success-subtle text-success"><img
+                                        src="images/icons/student.png">
+                                    <h4>STUDENTS</h4>
+                                </div>
                             </div>
                             <div class="col">
-                                <div class="p-2 dashboardData rounded bg-success-subtle text-success">COL 2</div>
+                                <div class="p-2 dashboardData rounded bg-success-subtle text-success"><img
+                                        src="images/icons/staff_admin.png">
+                                    <h4>STAFF</h4>
+                                </div>
                             </div>
                             <div class="col">
                                 <div class="p-2 dashboardData rounded bg-success-subtle text-success">COL 3</div>

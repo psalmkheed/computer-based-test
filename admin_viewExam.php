@@ -25,8 +25,8 @@ session_start();
 
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addExamModal">Add
                         Exam</button>
-                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#viewExamModal">View
-                        Exam</button>
+                    <!-- <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#viewExamModal">View
+                        Exam</button> -->
                 </div>
             </div>
             <div class="col-12 col-lg-12 mt-3 p-0">
@@ -60,8 +60,8 @@ session_start();
                             echo "<td>{$row['Date_published']}</td>";
                             echo "<td>{$row['Time_published']}</td>";
                             echo "<td>{$row['Exam_duration']} minutes</td>";
-                            echo "<td>    <button class='btn btn-danger delete-exam-btn' data-id='{$row['Exam_id']}'>Delete</button>
-                            <button class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#editExamModal' onclick='editExam({$row['Exam_id']})'>Edit</button>
+                            echo "<td>    <button class='btn btn-danger delete-exam-btn' data-id='{$row['Exam_id']}'><img src='images/Icons/delete.png' width='20' height='20'></button>
+                            <button class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#editExamModal' onclick='editExam({$row['Exam_id']})'><img src='images/Icons/edit.png' width='20' height='20'></button>
                             </td>";
                             echo "</tr>";
                         }
@@ -103,6 +103,8 @@ session_start();
                                 <label for="date" class="form-label">Date</label>
                                 <input type="date" class="form-control" id="date" name="date" required>
                             </div>
+
+
                             <div class="mb-3">
                                 <label for="time" class="form-label">Time</label>
                                 <input type="time" class="form-control" id="time" name="time" required>
@@ -113,10 +115,11 @@ session_start();
                             </div>
                             <button type="submit" class="btn btn-success" id="">Add Exam</button>
                         </form>
-
                     </div>
                 </div>
             </div>
+
+
         </div>
 </body>
 <script src="ajax.js"></script>
