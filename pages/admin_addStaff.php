@@ -1,7 +1,8 @@
 <?php
+include '../connection/db_connection.php';
+session_start()
 
-
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +20,9 @@
         <div class="row">
             <div class="col-12 col-lg-12 bg-success-subtle border border-1 border-success-subtle  p-3 rounded-3"
                 style="background-color: rgba(209, 231, 221, 0.6) !important;">
-                <h5 class="text-success m-0"> Manage Student's Result</h5>
+                <h5 class="text-success m-0"> Manage Staff</h5>
             </div>
+
         </div>
     </div>
 </body>

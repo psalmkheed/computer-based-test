@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  // Handle form submission
+  // Handle form submission for adding exams
   $("#addExamForm").on("submit", function (e) {
     e.preventDefault(); // Prevent the default form submission
 
@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     // Send an AJAX request to add the exam
     $.ajax({
-      url: "add_exam.php",
+      url: "/connection/db_connection.php",
       type: "POST",
       data: formData,
       success: function (response) {
@@ -22,10 +22,9 @@ $(document).ready(function () {
       },
     });
   });
-});
 
-$(document).ready(function () {
-  $(".delete-exam-btn").on("click", function (e) {
+  // Handle delete exam button click
+  $(document).on("click", ".delete-exam-btn", function (e) {
     e.preventDefault();
 
     if (!confirm("Are you sure you want to delete this exam?")) return;
@@ -34,18 +33,18 @@ $(document).ready(function () {
     const examId = button.data("id");
 
     $.ajax({
-      url: "delete_exam.php",
+      url: "/CBT/connection/delete_exam.php",
       type: "POST",
       data: {
-        delete_exam: true,
         exam_id: examId,
       },
       success: function (response) {
         alert(response);
-        button.closest("tr").fadeOut(); // remove row on success
+        button.closest("tr").fadeOut(); // Remove row on success
       },
-      error: function () {
-        alert("An error occurred while deleting the exam.");
+      error: function (xhr) {
+        console.error("Error:", xhr.responseText); // Log the server response
+        alert("An error occurred while deleting the exam: " + xhr.responseText);
       },
     });
   });
