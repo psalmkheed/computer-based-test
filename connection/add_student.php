@@ -1,53 +1,61 @@
 <?php
 include '../connection/db_connection.php';
 session_start();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['formSubmit'])) {
-        if (isset($_FILES['photo']) && $_FILES['photo']['error'] === 0) {
-            $photo = $_FILES['photo']['name'];
-            $targetDir = "uploads/";
-            $targetFile = $targetDir . basename($_FILES["photo"]["name"]);
-            move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFile);
-        } else {
-            echo "<script>
-    alert('Error: Failed to upload photo.');
-    </script>";
-        }
 
-        $regNumber = $_POST['registrationNumber'];
-        $surname = $_POST['surname'];
-        $fname = $_POST['firstName'];
-        $otherName = $_POST['otherName'];
-        $gender = $_POST['gender'];
-        $dob = $_POST['dateOfBirth'];
-        $state = $_POST['stateOfOrigin'];
-        $joinedDate = $_POST['joinedDate'];
-        $parentName = $_POST['parentFullName'];
-        $parentEmail = $_POST['parentEmail'];
-        $parentPhone = $_POST['parentPhoneNumber'];
-        $parentAddress = $_POST['parentContactAaddress'];
-        $currentClass = $_POST['currentClass'];
-        // Inserting the student details into the database
-        $stmt = $conn->prepare("INSERT INTO student_registration (Photo_Id, Registration_Number, Surname, First_Name, Other_Name, Gender, DOB, State_of_Origin, Joined_Date, Parent_Guardian_Name, Parent_Guardian_Email, Parent_Guardian_Number, Parent_Guardian_Address, Current_Class) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssssssssss", $photo, $regNumber, $surname, $fname, $otherName, $gender, $dob, $state, $joinedDate, $parentName, $parentEmail, $parentPhone, $parentAddress, $currentClass);
-        if ($stmt->execute()) {
-            // Redirecting to the admin page
-            header("Location: ../admin.php");
-            echo "<sript>
-            alert('Student registered successfully!');
-            </script>";
-            exit();
-        } else if ($stmt->error) {
-            echo "<script>
-            alert('Error: " . $stmt->error . "');
-            </script>";
-        } else {
-            echo "<script>
-            alert('Error: Failed to register student.');
-            </script>";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Validate required fields
+    $requiredFields = ['registrationNumber', 'surname', 'firstName', 'gender', 'dateOfBirth', 'stateOfOrigin', 'joinedDate', 'parentFullName', 'parentPhoneNumber', 'currentClass'];
+    foreach ($requiredFields as $field) {
+        if (empty($_POST[$field])) {
+            http_response_code(400);
+            echo json_encode(['error' => "$field is required."]);
+            exit;
         }
-        $stmt->close();
-        $conn->close();
     }
+
+    // Handle file upload
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] === 0) {
+        $targetDir = "../uploads/";
+        $targetFile = $targetDir . basename($_FILES["photo"]["name"]);
+        if (!move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFile)) {
+            http_response_code(500);
+            echo json_encode(['error' => 'Failed to upload photo.']);
+            exit;
+        }
+    } else {
+        http_response_code(400);
+        echo json_encode(['error' => 'Photo is required.']);
+        exit;
+    }
+
+    // Sanitize inputs
+    $regNumber = htmlspecialchars($_POST['registrationNumber']);
+    $surname = htmlspecialchars($_POST['surname']);
+    $fname = htmlspecialchars($_POST['firstName']);
+    $otherName = htmlspecialchars($_POST['otherName']);
+    $gender = htmlspecialchars($_POST['gender']);
+    $dob = htmlspecialchars($_POST['dateOfBirth']);
+    $state = htmlspecialchars($_POST['stateOfOrigin']);
+    $joinedDate = htmlspecialchars($_POST['joinedDate']);
+    $parentName = htmlspecialchars($_POST['parentFullName']);
+    $parentEmail = htmlspecialchars($_POST['parentEmail']);
+    $parentPhone = htmlspecialchars($_POST['parentPhoneNumber']);
+    $parentAddress = htmlspecialchars($_POST['parentContactAddress']);
+    $currentClass = htmlspecialchars($_POST['currentClass']);
+
+    // Insert data into the database
+    $stmt = $conn->prepare("INSERT INTO student_registration (Photo_Id, Registration_Number, Surname, First_Name, Other_Name, Gender, DOB, State_of_Origin, Joined_Date, Parent_Full_Name, Parent_Email, Parent_Phone, Parent_Address, Current_Class) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssssssssss", $targetFile, $regNumber, $surname, $fname, $otherName, $gender, $dob, $state, $joinedDate, $parentName, $parentEmail, $parentPhone, $parentAddress, $currentClass);
+
+    if ($stmt->execute()) {
+        echo json_encode(["status" => "success", "message" => "Student added successfully!"]);
+
+    } else {
+        http_response_code(500);
+        echo json_encode(['error' => 'Failed to add student: ' . $stmt->error]);
+    }
+
+    $stmt->close();
+    $conn->close();
 }
 ?>

@@ -1,9 +1,7 @@
 <?php
 include '../connection/db_connection.php';
 session_start();
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,24 +11,25 @@ session_start();
     <title>Manage Student</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            display: none;
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: none;
+        }
+
+        input[type="date"] {
+            cursor: text !important;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
-<style>
-    input[type="date"]::-webkit-calendar-picker-indicator {
-        display: none;
-    }
 
-    select {
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background: none;
-    }
-
-    input[type="date"] {
-        cursor: text !important;
-        text-transform: uppercase;
-    }
-</style>
 
 <body>
     <div class="container-fluid m-0 p-0">
@@ -45,6 +44,7 @@ session_start();
             <div class="container my-1">
                 <div class=" row">
                     <div class="col-12 col-lg-12 mt-3 p-0">
+                        <!-- table for displaying students -->
                         <table
                             class="table table-bordered table-striped table-hover table-responsive table-sm table-light table-success-subtle">
                             <thead>
@@ -59,9 +59,6 @@ session_start();
                                     <th>Date Joined</th>
                                     <th>Class</th>
                                     <th>Action</th>
-
-
-
                                 </tr>
                             </thead>
                             <tbody id="studentTableBody">
@@ -84,7 +81,7 @@ session_start();
                                         echo "<td>{$row['Joined_Date']}</td>";
                                         echo "<td>{$row['Current_Class']}</td>";
                                         echo "<td>
-                                            
+                
                                             <button class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editStudentModal' onclick='editStudent({$row['Id']})'><img src='images/Icons/edit.png' width='20' height='20'></button>
                                             <button class='btn btn-danger btn-sm delete-student-btn' data-id='{$row['Id']}'><img src='images/Icons/delete.png' width='20' height='20'></button>"
 
@@ -95,7 +92,6 @@ session_start();
 
                                 }
                                 $stmt->close();
-                                $conn->close();
 
                                 ?>
                             </tbody>
@@ -113,25 +109,24 @@ session_start();
                                     </div>
                                     <div class="modal-body">
                                         <form id="addStudentForm" method="POST" action="connection/add_student.php"
-                                            enctype="multipart/form-data" autocomplete="off">
-                                            <label for="photo" class="form-label">Upload Photo</label>
+                                            enctype="multipart/form-data">
+                                            <label for=" photo" class="form-label">Upload Photo</label>
                                             <input type="file" class="form-control mb-3" id="photo" name="photo"
-                                                accept="image/*" required>
+                                                accept="image/*">
                                             <label for="registrationNumber" class="form-label">Registration
                                                 Number</label>
                                             <input type="text" class="form-control mb-3" id="registrationNumber"
-                                                name="registrationNumber" required>
+                                                name="registrationNumber">
                                             <label for="surname" class="form-label">Surname</label>
-                                            <input type="text" class="form-control mb-3" id="surname" name="surname"
-                                                required>
+                                            <input type="text" class="form-control mb-3" id="surname" name="surname">
                                             <label for="firstName" class="form-label">First Name</label>
-                                            <input type="text" class="form-control mb-3" id="firstName" name="firstName"
-                                                required>
+                                            <input type="text" class="form-control mb-3" id="firstName"
+                                                name="firstName">
                                             <label for="otherName" class="form-label">Other Name</label>
-                                            <input type="text" class="form-control mb-3" id="otherName" name="otherName"
-                                                required>
+                                            <input type="text" class="form-control mb-3" id="otherName"
+                                                name="otherName">
                                             <label for="gender" class="form-label">Gender</label>
-                                            <select class="form-select mb-3" id="gender" name="gender" required>
+                                            <select class="form-select mb-3" id="gender" name="gender">
                                                 <option value="" disabled selected>Select Gender</option>
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
@@ -139,38 +134,38 @@ session_start();
                                             <label for="dateOfBirth" class="form-label">Date of
                                                 Birth</label>
                                             <input type="date" class="form-control mb-3" id="dateOfBirth"
-                                                name="dateOfBirth" onclick="this.showPicker()" required>
+                                                name="dateOfBirth" onclick="this.showPicker()">
                                             <label for="stateOfOrigin" class="form-label">State of
                                                 Origin</label>
                                             <input type="text" class="form-control mb-3" id="stateOfOrigin"
-                                                name="stateOfOrigin" required>
+                                                name="stateOfOrigin">
                                             <label for="joinedDate" class="form-label">Joined Date</label>
                                             <input type="date" class="form-control mb-3" id="joinedDate"
-                                                name="joinedDate" onclick="this.showPicker()" required>
+                                                name="joinedDate" onclick="this.showPicker()">
                                             <label for="parentFullName" class="form-label">Parent/Guardian
                                                 Full Name</label>
                                             <input type="text" class="form-control mb-3" id="parentFullName"
-                                                name="parentFullName" required>
+                                                name="parentFullName">
                                             <label for="parentPhoneNumber" class="form-label">Parent/Guardian
                                                 Phone
                                                 Number</label>
                                             <input type="text" class="form-control mb-3" id="parentPhoneNumber"
-                                                name="parentPhoneNumber" required>
+                                                name="parentPhoneNumber">
                                             <label for="parentEmail" class="form-label">Parent/Guardian
                                                 Email</label>
                                             <input type="email" class="form-control mb-3" id="parentEmail"
                                                 name="parentEmail">
-                                            <label for="parentContactAaddress" class="form-label">Parent/Guardian
+                                            <label for="parentContactAddress" class="form-label">Parent/Guardian
                                                 Contact
                                                 Address</label>
                                             <input type="text" class="form-control mb-3" id="parentContactAaddress"
-                                                name="parentContactAaddress" required>
+                                                name="parentContactAddress">
                                             <label for="currentClass" class="form-label">Current
                                                 Class</label>
                                             <input type="text" class="form-control mb-3" id="currentClass"
-                                                name="currentClass" required>
+                                                name="currentClass">
                                             <button type="reset" class="btn btn-warning" id="">Reset</button>
-                                            <button type="submit" class="btn btn-success" id="" name="formSubmit">Create
+                                            <button type="submit" class="btn btn-success" name="formSubmit">Create
                                                 Student</button>
                                         </form>
                                     </div>
@@ -182,6 +177,57 @@ session_start();
             </div>
         </div>
     </div>
+
+    <script>
+        // Handle form submission for adding students
+        $("#addStudentForm").on("submit", function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: "/CBT/connection/add_student.php",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    try {
+                        var res = JSON.parse(response);
+                        if (res.status === "success") {
+                            alert(res.message);
+                            location.reload();
+                        } else {
+                            alert("Error: " + res.message);
+                        }
+                    } catch (e) {
+                        alert("Unexpected response: " + response);
+                    }
+                },
+
+            });
+        });
+
+        // Handle delete student button click
+        $(".delete-student-btn").on("click", function () {
+            if (!confirm("Are you sure you want to delete this student?")) return;
+            const button = $(this);
+            const studentId = button.data("id");
+            $.ajax({
+                url: "/CBT/connection/delete_student.php",
+                type: "POST",
+                data: {
+                    student_id: studentId
+                },
+                success: function (response) {
+                    alert("Student deleted successfully!");
+                    button.closest("tr").fadeOut();
+                },
+                error: function (xhr, status, error) {
+                    alert("Error deleting student: " + error);
+                },
+            });
+        });
+
+    </script>
 </body>
 
 </html>
