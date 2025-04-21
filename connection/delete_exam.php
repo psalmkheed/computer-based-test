@@ -1,5 +1,5 @@
 <?php
-include '../connection/db_connection.php'; // Ensure the correct path to db_connection.php
+include '../connection/db_connection.php';
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validate exam_id
@@ -28,10 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         http_response_code(500); // Internal Server Error
         echo "Database error: " . $conn->error;
     }
-
     $conn->close();
 } else {
     http_response_code(405); // Method Not Allowed
     echo "Invalid request method.";
+    exit;
 }
 ?>
