@@ -162,6 +162,7 @@ session_start();
                                                 name="parentContactAddress">
                                             <label for="currentClass" class="form-label">Current
                                                 Class</label>
+<<<<<<< HEAD
                                             <select class="form-select mb-3" id="currentClass" name="currentClass">
                                                 <option value="" disabled selected>Select Class</option>
                                                 <option value="SS1">SS1</option>
@@ -183,6 +184,13 @@ session_start();
                                                     Student</button>
                                             </div>
 
+=======
+                                            <input type="text" class="form-control mb-3" id="currentClass"
+                                                name="currentClass">
+                                            <button type="reset" class="btn btn-warning" id="">Reset</button>
+                                            <button type="submit" class="btn btn-success" name="formSubmit">Create
+                                                Student</button>
+>>>>>>> 625dc67e35e0b9fe83f62e4dc39dfc416d706da1
                                         </form>
                                     </div>
                                 </div>
