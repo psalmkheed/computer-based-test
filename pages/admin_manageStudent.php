@@ -27,6 +27,7 @@ session_start();
             cursor: text !important;
             text-transform: uppercase;
         }
+::web
     </style>
 </head>
 
@@ -101,8 +102,9 @@ session_start();
                             aria-labelledby="addStudentModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="addStudentModalLabel">Create New Student
+                                    <div class="modal-header bg-success-subtle border border-1 border-success-subtle">
+                                        <h5 class="modal-title text-success" id="addStudentModalLabel ">Create New
+                                            Student
                                         </h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>

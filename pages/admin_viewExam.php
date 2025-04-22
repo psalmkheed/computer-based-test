@@ -9,6 +9,26 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Exams</title>
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <style>
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            display: none;
+        }
+
+        #customDateInput {
+            cursor: pointer;
+            background: url('https://cdn-icons-png.flaticon.com/512/747/747310.png') no-repeat right 10px center;
+            background-size: 20px;
+            padding-right: 35px;
+        }
+    </style>
+    <script src="/CBT/assets/scripts/date_picker.js"></script>
+
 </head>
 
 <body>
@@ -71,8 +91,8 @@ session_start();
         <div class="modal fade" id="addExamModal" tabindex="-1" aria-labelledby="addExamModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addExamModalLabel">Add Exam</h5>
+                    <div class="modal-header bg-success-subtle border border-1 border-success-subtle">
+                        <h5 class="modal-title text-success" id="addExamModalLabel">Add Exam</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -87,7 +107,9 @@ session_start();
                             </div>
                             <div class="mb-3">
                                 <label for="date" class="form-label">Date</label>
-                                <input type="date" class="form-control" id="date" name="date" required>
+                                <input type="text" class="form-control" id="customDateInput" name="date"
+                                    placeholder="Select a date" readonly onclick="showCustomDatePicker()">
+
                             </div>
                             <div class="mb-3">
                                 <label for="time" class="form-label">Time</label>
