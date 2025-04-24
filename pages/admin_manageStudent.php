@@ -9,8 +9,8 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Student</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     <style>
         input[type="date"]::-webkit-calendar-picker-indicator {
             display: none;
@@ -27,10 +27,8 @@ session_start();
             cursor: text !important;
             text-transform: uppercase;
         }
-::web
     </style>
 </head>
-
 
 <body>
     <div class="container-fluid m-0 p-0">
@@ -64,6 +62,7 @@ session_start();
                             </thead>
                             <tbody id="studentTableBody">
                                 <?php
+                                // Fetch students from the database
                                 $stmt = $conn->prepare("SELECT * FROM student_registration");
                                 $stmt->execute();
                                 $result = $stmt->get_result();
@@ -82,11 +81,9 @@ session_start();
                                         echo "<td>{$row['Joined_Date']}</td>";
                                         echo "<td>{$row['Current_Class']}</td>";
                                         echo "<td>
-                
                                             <button class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editStudentModal' onclick='editStudent({$row['Id']})'><img src='images/Icons/edit.png' width='20' height='20'></button>
-                                            <button class='btn btn-danger btn-sm delete-student-btn' data-id='{$row['Id']}'><img src='images/Icons/delete.png' width='20' height='20'></button>"
-
-                                            . "</td>";
+                                            <button class='btn btn-danger btn-sm delete-student-btn' data-id='{$row['Id']}'><img src='images/Icons/delete.png' width='20' height='20'></button>
+                                            </td>";
                                         echo "</tr>";
 
                                     }
@@ -110,9 +107,9 @@ session_start();
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form id="addStudentForm" method="POST" action="connection/add_student.php"
-                                            autocomplete="off" enctype="multipart/form-data">
-                                            <label for=" photo" class="form-label">Upload Photo</label>
+                                        <form id="addStudentForm" method="POST" action="" autocomplete="on"
+                                            enctype="multipart/form-data">
+                                            <label for="photo" class="form-label">Upload Photo</label>
                                             <input type="file" class="form-control mb-3" id="photo" name="photo"
                                                 accept="image/*">
                                             <label for="registrationNumber" class="form-label">Registration
@@ -172,19 +169,17 @@ session_start();
                                                 <option value="JSS1">JSS1</option>
                                                 <option value="JSS2">JSS2</option>
                                                 <option value="JSS3">JSS3</option>
-                                                <option value="Primary 1">Primary 1</option>
-                                                <option value="Primary 2">Primary 2</option>
-                                                <option value="Primary 3">Primary 3</option>
-                                                <option value="Primary 4">Primary 4</option>
-                                                <option value="Primary 5">Primary 5</option>
+                                                <option value="Year 1">Year 1</option>
+                                                <option value="Year 2">Year 2</option>
+                                                <option value="Year 3">Year 3</option>
+                                                <option value="Year 4">Year 4</option>
+                                                <option value="Year 5">Year 5</option>
                                             </select>
                                             <div class="d-flex justify-content-end ">
-
                                                 <button type="reset" class="btn btn-warning  me-2" id="">Reset</button>
                                                 <button type="submit" class="btn btn-success" name="formSubmit">Create
                                                     Student</button>
                                             </div>
-
                                         </form>
                                     </div>
                                 </div>
@@ -198,6 +193,8 @@ session_start();
 
     <script>
         // Handle form submission for adding students
+
+
         $("#addStudentForm").on("submit", function (e) {
             e.preventDefault();
             var formData = new FormData(this);
@@ -244,6 +241,8 @@ session_start();
                 },
             });
         });
+
+
 
     </script>
 </body>

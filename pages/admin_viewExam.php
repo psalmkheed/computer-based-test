@@ -9,6 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Exams</title>
+    <script src="/CBT/assets/scripts/date_picker.js"></script>
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
@@ -27,7 +28,7 @@ session_start();
             padding-right: 35px;
         }
     </style>
-    <script src="/CBT/assets/scripts/date_picker.js"></script>
+
 
 </head>
 

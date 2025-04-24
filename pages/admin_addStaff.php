@@ -98,5 +98,53 @@ session_start()
                         </form>
                     </div>
 </body>
+<script>
+    $(document).ready(function () {
+        $('#addStaffForm').on('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'), // Use the form's action attribute
+                data: new FormData(this),
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response); // Show success message
+                    location.reload(); // Reload the page to see the updated staff list
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText); // Show error message
+                }
+            });
+        });
+    });
+
+    // Delete staff
+    $(document).on('click', '.delete-staff-btn', function () {
+        var staffId = $(this).data('id');
+        if (confirm('Are you sure you want to delete this staff?')) {
+            $.ajax({
+                url: '/CBT/connection/delete_staff.php',
+                type: 'POST',
+                data: { staff_id: staffId },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.success);
+                        // Optionally remove the staff row from the table
+                    } else {
+                        alert(response.error);
+                    }
+                },
+                error: function (xhr) {
+                    alert('Error: ' + xhr.responseText);
+                }
+            });
+
+        }
+    });
+
+</script>
 
 </html>
