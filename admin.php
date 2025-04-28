@@ -25,6 +25,10 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/solid.min.css"
         integrity="sha512-DzC7h7+bDlpXPDQsX/0fShhf1dLxXlHuhPBkBo/5wJWRoTU6YL7moeiNoej6q3wh5ti78C57Tu1JwTNlcgHSjg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- favicon -->
+    <link rel="icon" href="images/logo.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/logo.png" type="image/x-icon">
     <!-- AJAX CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -51,77 +55,7 @@ session_start();
             overflow-X: hidden;
         }
 
-        /* media query */
-        @media only screen and (max-width: 600px) {
-            .loginForm {
-                width: 80%;
-            }
-        }
-
-        .h3-hover:hover {
-            color: #198754;
-            cursor: default;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .icon {
-            margin-right: 5px;
-        }
-
-        .sidebar {
-            max-height: 100vh;
-            font-size: inherit;
-        }
-
-        @media screen and (max-width: 768px) {
-            .sidebar {
-                height: auto;
-                font-size: 14px;
-            }
-
-        }
-
-        @media screen and (max-width: 991.33px) {
-            .sidebar {
-                height: auto;
-            }
-
-
-        }
-
-        .main {
-            height: 50vh;
-        }
-
-        .sidebar ul li {
-            font-size: 16px;
-            list-style-type: none;
-            color: #fff;
-            padding: 10px;
-            padding-left: 5px;
-            margin: 0;
-        }
-
-        .sidebar ul li:hover {
-            background-color: #f0002020;
-            cursor: pointer;
-        }
-
-        .dashboardData {
-            min-height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 1em;
-        }
-
-        .searchBar:focus {
-            outline: none !important;
-            border: 0;
-            box-shadow: 0 0 0 .25rem rgba(30, 126, 52, 0.25) !important;
-        }
-
+        /* background-color, text-color and button-color styles */
         .bg-success {
             background-color: #b00020 !important;
         }
@@ -129,8 +63,6 @@ session_start();
         .bg-success-subtle {
             background-color: #b0002020 !important;
         }
-
-
 
         .btn-success {
             background-color: #b00020 !important;
@@ -141,6 +73,86 @@ session_start();
             color: #b00020 !important;
         }
 
+        /* header searchbar style */
+        .searchBar:focus {
+            outline: none !important;
+            border: 0;
+            box-shadow: 0 0 0 .25rem #f0002020 !important;
+        }
+
+
+
+        .main {
+            height: 50vh;
+        }
+
+        /* sidebar styles */
+        .sidebar ul li {
+            font-size: 16px;
+            list-style-type: none;
+            color: #fff;
+            padding: 10px;
+            padding-left: 5px;
+            margin: 0;
+        }
+
+        .sidebar i {
+            font-size: 30px;
+            color: #b00020
+        }
+
+        .sidebar ul li:hover {
+            background-color: #f0002020;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            max-height: 100vh;
+            font-size: inherit;
+        }
+
+        /* media query for screen-size of max-with 600px*/
+
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                height: auto;
+                font-size: 14px;
+            }
+        }
+
+        /* media query for screen-size of max-with 991.33px */
+
+        @media screen and (max-width: 991.33px) {
+            .sidebar {
+                height: auto;
+            }
+        }
+
+        /* dashboard styles */
+        .dashboardData {
+            min-height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+            flex-direction: column;
+        }
+
+        .dashboardData:hover {
+            background-color: #b0002020;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            transform: scale(1.05);
+        }
+
+        .icon {
+            font-size: 90px;
+            color: #b00020;
+            cursor: pointer;
+        }
+
+        /* table th and td styles */
         table,
         .table {
             font-size: 14px !important;
@@ -153,18 +165,6 @@ session_start();
         table td {
             font-weight: normal !important;
         }
-
-
-        i {
-            font-size: 30px;
-            color: #b00020
-        }
-
-        .icon {
-            font-size: 90px;
-            color: #b00020;
-            cursor: pointer;
-        }
     </style>
 </head>
 
@@ -173,7 +173,7 @@ session_start();
         <div class="container-fluid">
             <div class="row">
                 <!-- div col-lg-2 for the sideBar with sticky position-->
-                <div class="col-lg-2 p-0 sidebar sticky-lg-top " style="background-color: #b00020;">
+                <div class="col-lg-2 p-0 sidebar sticky-lg-top bg-success">
                     <div class="brand p-3">
                         <h3 class="text-warning" id="brand">DO-ESTDOT</h3>
                     </div>
