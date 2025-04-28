@@ -1,8 +1,8 @@
 <?php
 // Database connection
-$conn = mysqli_connect("localhost", "root", "", "cbt_center");
+$conn = new mysqli("localhost", "root", "", "cbt_center", "4060");
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    exit("Connection failed: " . mysqli_connect_error());
 }
 
 ?>

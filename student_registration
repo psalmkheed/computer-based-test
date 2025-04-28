@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `student_registration` (
-  `Id` int(8) NOT NULL,
+  `Id` int(8) AUTO_INCREMENT NOT NULL,
   `Photo_Id` blob NOT NULL,
-  `Registration_Number` varchar(256) NOT NULL,
+  `Registration_Number` varchar(256) PRIMARY NOT NULL,
   `Surname` varchar(100) NOT NULL,
   `First_Name` varchar(100) NOT NULL,
   `Other_Name` varchar(100) NOT NULL,

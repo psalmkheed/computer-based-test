@@ -1,5 +1,5 @@
 <?php
-include 'connection/db_connection.php';
+// include 'connection/db_connection.php';
 session_start();
 ?>
 
@@ -16,6 +16,15 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- FONT AWESOME CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css"
+        integrity="sha512-v8QQ0YQ3H4K6Ic3PJkym91KoeNT5S3PnDKvqnwqFD1oiqIl653crGZplPdU5KKtHjO0QKcQ2aUlQZYjHczkmGw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/solid.min.css"
+        integrity="sha512-DzC7h7+bDlpXPDQsX/0fShhf1dLxXlHuhPBkBo/5wJWRoTU6YL7moeiNoej6q3wh5ti78C57Tu1JwTNlcgHSjg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- AJAX CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -94,7 +103,7 @@ session_start();
         }
 
         .sidebar ul li:hover {
-            background-color: #1e7e34;
+            background-color: #f0002020;
             cursor: pointer;
         }
 
@@ -113,6 +122,25 @@ session_start();
             box-shadow: 0 0 0 .25rem rgba(30, 126, 52, 0.25) !important;
         }
 
+        .bg-success {
+            background-color: #b00020 !important;
+        }
+
+        .bg-success-subtle {
+            background-color: #b0002020 !important;
+        }
+
+
+
+        .btn-success {
+            background-color: #b00020 !important;
+            border-color: #b00020 !important;
+        }
+
+        .text-success {
+            color: #b00020 !important;
+        }
+
         table,
         .table {
             font-size: 14px !important;
@@ -125,6 +153,18 @@ session_start();
         table td {
             font-weight: normal !important;
         }
+
+
+        i {
+            font-size: 30px;
+            color: #b00020
+        }
+
+        .icon {
+            font-size: 90px;
+            color: #b00020;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -133,23 +173,25 @@ session_start();
         <div class="container-fluid">
             <div class="row">
                 <!-- div col-lg-2 for the sideBar with sticky position-->
-                <div class="col-lg-2 bg-success p-0 sidebar sticky-lg-top ">
+                <div class="col-lg-2 p-0 sidebar sticky-lg-top " style="background-color: #b00020;">
                     <div class="brand p-3">
                         <h3 class="text-warning" id="brand">DO-ESTDOT</h3>
                     </div>
                     <ul class="list-group">
-                        <li class="" id="manageStudent"><img src="images/icons/Edit.svg" class="icon" width="30"
+                        <li class="" id="manageStudent"><img src="images/icons/add_student.png" class="icon" width="30"
                                 height="30">Manage
                             Student </li>
                         <li class="" id="addStaff"><img src="images/icons/staff.png" class="icon" width="30"
                                 height="30">Staff</li>
                         <!-- <li class="" id="addExam"><img src="images/icons/Plus.svg" class="icon" width="30" height="30">
                             Add Exam</li> -->
-                        <li class="" id="viewExam"><img src="images/icons/Book.svg" class="icon" width="30"
+                        <li class="" id="viewExam"><img src="images/icons/exam.png" class="icon" width="30"
                                 height="30">Add & View Exam
                         </li>
                         <li class="" id="result"><img src="images/icons/result.png" class="icon" width="30"
                                 height="30">Result</li>
+                        <li class="" id="manageAccount"><img src="images/icons/manage_accounts.png" class="icon"
+                                width="30" height="30">Manage Account</li>
                         <li class="" id="logout"><img src="images/icons/logout.png" class="icon" width="30"
                                 height="30">Logout</li>
                     </ul>
@@ -161,14 +203,14 @@ session_start();
                     <div class="row p-3 position-sticky top-0 bg-body shadow-sm ">
                         <div class="col-lg-10 col-10 mb-0 d-flex align-items-center justify-content-between">
                             <h4 class="text-success">Admin Dashboard</h4>
-                            <form class="d-flex" action="add_exam.php" method="GET">
+                            <form class="d-flex" action="" method="GET">
                                 <input type="search" class="form-control me-2 searchBar" placeholder="Search"
                                     name="search">
                                 <button type="submit" class="btn btn-success">Search</button>
                             </form>
                         </div>
                         <div class="col-lg-2 col-2 d-flex justify-content-end align-items-center">
-                            <img src="images/icons/user.png" width="30" height="30">
+                            <i class="fa-solid fa-user"></i>
                         </div>
                     </div>
 
@@ -176,14 +218,14 @@ session_start();
                     <div class="container-fluid my-3" id="mainContent" style="height: auto;">
                         <div class=" row row-cols-1 row-cols-sm-1 row-cols-lg-4 g-2 g-lg-3">
                             <div class="col">
-                                <div class="p-2 dashboardData rounded bg-success-subtle text-success"><img
-                                        src="images/icons/student.png">
+                                <div class="p-2 dashboardData rounded bg-success-subtle text-success"><i
+                                        class="fa-solid fa-user icon"></i>
                                     <h4>STUDENTS</h4>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="p-2 dashboardData rounded bg-success-subtle text-success"><img
-                                        src="images/icons/staff_admin.png">
+                                <div class="p-2 dashboardData rounded bg-success-subtle text-success"><i
+                                        class="fa-solid fa-users icon"></i>
                                     <h4>STAFF</h4>
                                 </div>
                             </div>

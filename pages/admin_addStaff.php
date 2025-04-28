@@ -13,13 +13,19 @@ session_start()
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <style>
+        .border-success-subtle {
+            border-color: #b00020 !important;
+        }
+    </style>
+
 </head>
 
 <body>
     <div class="container-fluid m-0 p-0">
         <div class="row">
             <div class="col-12 col-lg-12 bg-success-subtle border border-1 border-success-subtle  p-3 rounded-3 d-flex justify-content-between align-items-center"
-                style="background-color: rgba(209, 231, 221, 0.6) !important;">
+                style="background-color: #b0002020 !important;">
                 <h5 class="text-success m-0"> Manage Staff</h5>
                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addStaffModal">Add
                     Staff</button>

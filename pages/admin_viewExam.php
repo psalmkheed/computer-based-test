@@ -27,6 +27,11 @@ session_start();
             background-size: 20px;
             padding-right: 35px;
         }
+
+
+        .border-success-subtle {
+            border-color: #b00020 !important;
+        }
     </style>
 
 
@@ -36,13 +41,15 @@ session_start();
     <div class="container-fluid m-0 p-0">
         <div class="row">
             <div class="col-12 col-lg-12 bg-success-subtle border border-1 border-success-subtle p-3 rounded-3 d-flex justify-content-between align-items-center"
-                style="background-color: rgba(209, 231, 221, 0.6) !important;">
+                style="background-color:  #b0002020 !important;">
                 <h5 class="text-success m-0"> Add & View Uploaded Exams</h5>
                 <div>
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addExamModal">Add
                         Exam</button>
                 </div>
             </div>
+
+            <!-- table for populating registered exams from the database -->
             <div class="col-12 col-lg-12 mt-3 p-0">
                 <table
                     class="table table-bordered table-striped table-hover table-responsive table-sm table-light table-success-subtle">

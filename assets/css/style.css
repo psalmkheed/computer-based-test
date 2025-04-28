@@ -24,7 +24,7 @@ body {
 }
 
 .h3-hover:hover {
-  color: #198754;
+  color: #b00020;
   cursor: default;
   transition: all 0.3s ease-in-out;
 }
