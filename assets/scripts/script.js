@@ -3,16 +3,15 @@ $(document).ready(function () {
   $("#brand").on("click", function () {
     window.location.href = "admin.php";
   });
-  $("#logout").on("click", function () {
-    // Perform logout action here, e.g., redirect to logout.php or clear session
-    // For demonstration, I'll just redirect to index.php
-    window.location.href = "index.php";
-  });
+
   $("#manageStudent").on("click", function () {
     $("#mainContent").load("pages/admin_manageStudent.php");
   });
   $("#addStaff").on("click", function () {
     $("#mainContent").load("pages/admin_addStaff.php");
+  });
+  $("#subject").on("click", function () {
+    $("#mainContent").load("pages/admin_subject.php");
   });
   $("#addExam").on("click", function () {
     $("#mainContent").load("pages/admin_addExam.php");
@@ -21,6 +20,6 @@ $(document).ready(function () {
     $("#mainContent").load("pages/admin_viewExam.php");
   });
   $("#result").on("click", function () {
-    $("#mainContent").load("pages/admin_result.php");
+    $("#mainContent").load("pages/admin_class.php");
   });
 });

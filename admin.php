@@ -1,9 +1,12 @@
 <?php
-// include 'connection/db_connection.php';
+include 'connection/db_connection.php';
 session_start();
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("Location: /CBT/index.php");
+    exit();
+}
 ?>
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,12 +14,11 @@ session_start();
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="assets/css/style.css">
-
+    <!-- external cascading stylesheet -->
+    <link rel="stylesheet" href="assets/css/dashboard.css">
     <!-- FONT AWESOME CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css"
         integrity="sha512-v8QQ0YQ3H4K6Ic3PJkym91KoeNT5S3PnDKvqnwqFD1oiqIl653crGZplPdU5KKtHjO0QKcQ2aUlQZYjHczkmGw=="
@@ -32,140 +34,6 @@ session_start();
     <!-- AJAX CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
-
-        *,
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scrollbar-width: thin;
-            scrollbar-color: #198754 #fff;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Poppins", sans-serif;
-            font-size: 16px;
-            font-weight: 500;
-            height: 100vh;
-            overflow-X: hidden;
-        }
-
-        /* background-color, text-color and button-color styles */
-        .bg-success {
-            background-color: #b00020 !important;
-        }
-
-        .bg-success-subtle {
-            background-color: #b0002020 !important;
-        }
-
-        .btn-success {
-            background-color: #b00020 !important;
-            border-color: #b00020 !important;
-        }
-
-        .text-success {
-            color: #b00020 !important;
-        }
-
-        /* header searchbar style */
-        .searchBar:focus {
-            outline: none !important;
-            border: 0;
-            box-shadow: 0 0 0 .25rem #f0002020 !important;
-        }
-
-
-
-        .main {
-            height: 50vh;
-        }
-
-        /* sidebar styles */
-        .sidebar ul li {
-            font-size: 16px;
-            list-style-type: none;
-            color: #fff;
-            padding: 10px;
-            padding-left: 5px;
-            margin: 0;
-        }
-
-        .sidebar i {
-            font-size: 30px;
-            color: #b00020
-        }
-
-        .sidebar ul li:hover {
-            background-color: #f0002020;
-            cursor: pointer;
-        }
-
-        .sidebar {
-            max-height: 100vh;
-            font-size: inherit;
-        }
-
-        /* media query for screen-size of max-with 600px*/
-
-
-        @media screen and (max-width: 768px) {
-            .sidebar {
-                height: auto;
-                font-size: 14px;
-            }
-        }
-
-        /* media query for screen-size of max-with 991.33px */
-
-        @media screen and (max-width: 991.33px) {
-            .sidebar {
-                height: auto;
-            }
-        }
-
-        /* dashboard styles */
-        .dashboardData {
-            min-height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1em;
-            flex-direction: column;
-        }
-
-        .dashboardData:hover {
-            background-color: #b0002020;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            transform: scale(1.05);
-        }
-
-        .icon {
-            font-size: 90px;
-            color: #b00020;
-            cursor: pointer;
-        }
-
-        /* table th and td styles */
-        table,
-        .table {
-            font-size: 14px !important;
-        }
-
-        table th {
-            font-weight: 500;
-        }
-
-        table td {
-            font-weight: normal !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -188,29 +56,53 @@ session_start();
                         <li class="" id="viewExam"><img src="images/icons/exam.png" class="icon" width="30"
                                 height="30">Add & View Exam
                         </li>
+                        <li class="" id="subject"><img src="images/icons/exam.png" class="icon" width="30"
+                                height="30">Subject
+                        </li>
                         <li class="" id="result"><img src="images/icons/result.png" class="icon" width="30"
-                                height="30">Result</li>
+                                height="30">Classes</li>
                         <li class="" id="manageAccount"><img src="images/icons/manage_accounts.png" class="icon"
                                 width="30" height="30">Manage Account</li>
-                        <li class="" id="logout"><img src="images/icons/logout.png" class="icon" width="30"
-                                height="30">Logout</li>
+
                     </ul>
                 </div>
 
                 <!-- div col-lg-10 for the sticky header and mainContent div for loading pages dynamically-->
                 <div class="col-lg-10 bg-body">
                     <!-- this is the sticky page header -->
-                    <div class="row p-3 position-sticky top-0 bg-body shadow-sm ">
-                        <div class="col-lg-10 col-10 mb-0 d-flex align-items-center justify-content-between">
+                    <div class="row p-3 position-sticky top-0 bg-body z-3 shadow-sm ">
+                        <div class="col-lg-8 col-8 mb-0 d-flex align-items-center justify-content-between">
                             <h4 class="text-success">Admin Dashboard</h4>
-                            <form class="d-flex" action="" method="GET">
-                                <input type="search" class="form-control me-2 searchBar" placeholder="Search"
-                                    name="search">
-                                <button type="submit" class="btn btn-success">Search</button>
+                            <form class="d-flex" action="connection/search.php" method="GET">
+                                <input type="search" class="form-control me-2 searchBar" name="search"
+                                    placeholder="Search"
+                                    value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                                <button type="submit" class="btn btn-outline-success">Search</button>
                             </form>
+
                         </div>
-                        <div class="col-lg-2 col-2 d-flex justify-content-end align-items-center">
-                            <i class="fa-solid fa-user"></i>
+                        <div class="col-lg-4 col-4 d-flex justify-content-evenly align-items-center">
+                            <!-- if logged in it will display the following -->
+                            <?php
+                            if (isset($_SESSION['username']) && isset($_SESSION['loggedin'])) {
+                                $username = htmlspecialchars($_SESSION['username']);
+                                echo "<h6 class='text-danger'>Welcome, " . htmlspecialchars(strtoupper($username)) . "</h6>";
+                                echo "<div class='dropdown'>
+                                <button class='btn btn-success dropdown-toggle' type='button' id='dropdownMenuButton'
+                                    data-bs-toggle='dropdown' aria-expanded='false'>
+                                    <i class='fa-solid fa-user'></i>
+                                </button>
+                                <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                                    <li><a class='dropdown-item' href='#'>Profile</a></li>
+                                    <li><a class='dropdown-item' href='#'>Settings</a></li>
+                                    <li><a class='dropdown-item' href='connection/logout.php'>Logout</a></li>
+                                </ul>
+                            </div>";
+                            } else {
+                                header("Location: ../index.php");
+                                exit;
+                            }
+                            ?>
                         </div>
                     </div>
 

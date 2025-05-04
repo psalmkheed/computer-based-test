@@ -9,9 +9,20 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Student</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- DataTables CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
     <style>
+        :root {
+            --bs-success: #028219 !important;
+            --bs-success-subtle: #02821920 !important;
+            --bs-success-border: #028219 !important;
+            --bs-success-hover: #02821920 !important;
+        }
+
         input[type="date"]::-webkit-calendar-picker-indicator {
             display: none;
         }
@@ -28,9 +39,27 @@ session_start();
             text-transform: uppercase;
         }
 
+        :root {
+            --bs-success: #028219 !important;
+            --bs-success-subtle: #02821920 !important;
+            --bs-success-border: #028219 !important;
+            --bs-success-hover: #02821920 !important;
+        }
+
+        .bg-success {
+            background-color: var(--bs-success) !important;
+        }
+
+        .bg-success-subtle {
+            background-color: var(--bs-success-subtle) !important;
+        }
+
+        .border-success {
+            border-color: var(--bs-success) !important;
+        }
 
         .border-success-subtle {
-            border-color: #b00020 !important;
+            border-color: var(--bs-success-border) !important;
         }
     </style>
 </head>
@@ -38,8 +67,8 @@ session_start();
 <body>
     <div class="container-fluid m-0 p-0">
         <div class="row">
-            <div class="col-12 col-lg-12 bg-success-subtle border border-1 border-success-subtle  p-3 rounded-3 d-flex justify-content-between align-items-center"
-                style="background-color:  #b0002020 !important;">
+            <div
+                class="col-12 col-lg-12 bg-success-subtle border border-1 border-success-subtle  p-3 rounded-3 d-flex justify-content-between align-items-center">
                 <h5 class="text-success m-0"> Registered Students</h5>
                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addStudentModal">Add
                     Student</button>
@@ -49,7 +78,7 @@ session_start();
                 <div class=" row">
                     <div class="col-12 col-lg-12 mt-3 p-0">
                         <!-- table for displaying students -->
-                        <table
+                        <table id="studentTable"
                             class="table table-bordered table-striped table-hover table-responsive table-sm table-light table-success-subtle">
                             <thead>
                                 <tr>
@@ -104,7 +133,7 @@ session_start();
                             aria-labelledby="addStudentModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
-                                    <div class="modal-header bg-success-subtle border border-1 border-success-subtle">
+                                    <div class="modal-header bg-success-subtle">
                                         <h5 class="modal-title text-success" id="addStudentModalLabel ">Create New
                                             Student
                                         </h5>
@@ -246,8 +275,16 @@ session_start();
                 },
             });
         });
+    </script>
 
-
+    <script>
+        $(document).ready(function () {
+            $('#studentTable').DataTable({
+                "pageLength": 10,  // Number of rows per page
+                "lengthMenu": [10, 25, 50],
+                "order": [[0, "asc"]], // Sort by first column descending
+            });
+        });
 
     </script>
 </body>

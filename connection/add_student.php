@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'joinedDate',
         'parentFullName',
         'parentPhoneNumber',
-        'parentContactAdress',
+        'parentContactAddress',
         'currentClass'
     ];
 

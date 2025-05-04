@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+:root {
+  --bs-success: #028219 !important;
+  --bs-success-subtle: #02821920 !important;
+  --bs-success-border: #028219 !important;
+  --bs-success-hover: #02821920 !important;
+}
+
+*,
+body,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bs-success) #fff;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 100vh;
+}
+
+.dropdown-item:hover {
+  background-color: var(--bs-success) !important;
+  color: #fff !important;
+}
+
+/* background-color, text-color and button-color styles */
+.bg-success {
+  background-color: var(--bs-success) !important;
+}
+
+.bg-success-subtle {
+  background-color: var(--bs-success-subtle) !important;
+}
+
+.btn-success {
+  background-color: var(--bs-success) !important;
+  border-color: var(--bs-success) !important;
+}
+
+.text-success {
+  color: var(--bs-success) !important;
+}
+
+/* header searchbar style */
+.searchBar:focus {
+  outline: none !important;
+  border: 0;
+  box-shadow: 0 0 0 0.25rem var(--bs-success-subtle) !important;
+}
+
+.main {
+  height: 100vh;
+}
+
+/* sidebar styles */
+.sidebar ul li {
+  font-size: 16px;
+  list-style-type: none;
+  color: #fff;
+  padding: 10px;
+  padding-left: 5px;
+  margin: 0;
+}
+
+.sidebar i {
+  font-size: 30px;
+  color: var(--bs-success);
+}
+
+.sidebar ul li:hover {
+  background-color: #f0002020;
+  cursor: pointer;
+}
+
+.sidebar {
+  height: 100vh;
+  font-size: inherit;
+}
+
+/* media query for screen-size of max-with 600px*/
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    height: auto;
+    font-size: 14px;
+  }
+}
+
+/* media query for screen-size of max-with 991.33px */
+@media screen and (max-width: 991.33px) {
+  .sidebar {
+    height: auto;
+  }
+}
+
+/* dashboard overview styles  */
+.dashboardData {
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  flex-direction: column;
+}
+
+.dashboardData:hover {
+  background-color: var(--bs-success) 20;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+
+.icon {
+  font-size: 90px;
+  color: var(--bs-success);
+  cursor: pointer;
+}
+
+/* table th and td styles */
+table,
+.table {
+  font-size: 14px !important;
+  overflow: auto !important;
+}
+
+table th {
+  font-weight: 500;
+}
+
+table td {
+  font-weight: normal !important;
+}

@@ -1,8 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 :root {
   --primary: #028219 !important;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 *,
 html,
@@ -18,25 +18,6 @@ body {
   font-weight: 500;
   overflow: hidden;
   height: 100vh;
-}
-
-.container-fluid {
-  background-image: linear-gradient(to right bottom, #eee, var(--primary), #fff),
-    url(../../images/schoolbg.jpg);
-  background-repeat: no-repeat, no-repeat;
-  background-size: cover, cover;
-  background-position: center, center;
-  background-blend-mode: darken;
-  height: 100vh;
-}
-
-.loginForm {
-  /* background-color: #eee; */
-  padding: 20px;
-  min-width: 65%;
-  border: 2px dotted #fff;
-  border-radius: 5px;
-  backdrop-filter: blur(10px);
 }
 
 /* bg, btn, anchor, text color styles */
@@ -56,6 +37,29 @@ a {
   color: var(--primary) !important;
 }
 
+.container-fluid {
+  background-image: linear-gradient(to right bottom, #000, var(--primary), #000),
+    url(../../images/schoolbg.jpg);
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  background-position: center, center;
+  background-blend-mode: darken;
+  height: 100vh;
+}
+
+img .hide {
+  display: none !important;
+}
+
+.loginForm {
+  /* background-color: #eee; */
+  padding: 20px;
+  min-width: 60%;
+  border: 2px dotted #fff;
+  border-radius: 5px;
+  backdrop-filter: blur(10px);
+}
+
 .card {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -65,12 +69,17 @@ a {
     display: none !important;
   }
 
-  .hide {
-    display: block !important;
+  img .hide {
+    display: block;
   }
 
   .container-fluid {
     padding: 20px;
+  }
+
+  .loginForm {
+    margin-top: 65px !important;
+    min-width: 65%;
   }
 }
 
@@ -79,12 +88,17 @@ a {
     display: none !important;
   }
 
-  .hide {
+  img .hide {
     display: block !important;
   }
 
   .container-fluid {
     padding: 20px;
+  }
+
+  .loginForm {
+    margin-top: 65px !important;
+    min-width: 65%;
   }
 }
 
@@ -97,8 +111,12 @@ a {
     padding: 20px;
   }
 
-  .hide {
+  img .hide {
     display: block !important;
+  }
+  .loginForm {
+    margin-top: 65px !important;
+    min-width: 65%;
   }
 }
 
@@ -113,9 +131,5 @@ a {
 input:focus {
   outline: none !important;
   border: 0;
-  box-shadow: 0 0 0 0.25rem #f0002020 !important;
-}
-
-.hide {
-  display: none !important;
+  box-shadow: 0 0 0 0.25rem #02821920 !important;
 }

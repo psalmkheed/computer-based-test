@@ -10,12 +10,34 @@ session_start()
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Student</title>
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
     <style>
+        :root {
+            --bs-success: #028219 !important;
+            --bs-success-subtle: #02821920 !important;
+            --bs-success-border: #028219 !important;
+            --bs-success-hover: #02821920 !important;
+        }
+
+        .bg-success {
+            background-color: var(--bs-success) !important;
+        }
+
+        .bg-success-subtle {
+            background-color: var(--bs-success-subtle) !important;
+        }
+
+        .border-success {
+            border-color: var(--bs-success) !important;
+        }
+
         .border-success-subtle {
-            border-color: #b00020 !important;
+            border-color: var(--bs-success-border) !important;
         }
     </style>
 
@@ -24,16 +46,16 @@ session_start()
 <body>
     <div class="container-fluid m-0 p-0">
         <div class="row">
-            <div class="col-12 col-lg-12 bg-success-subtle border border-1 border-success-subtle  p-3 rounded-3 d-flex justify-content-between align-items-center"
-                style="background-color: #b0002020 !important;">
+            <div
+                class="col-12 col-lg-12 bg-success-subtle border border-1 border-success-subtle  p-3 rounded-3 d-flex justify-content-between align-items-center">
                 <h5 class="text-success m-0"> Manage Staff</h5>
                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addStaffModal">Add
                     Staff</button>
 
             </div>
             <div class="col-12 col-lg-12 mt-3 p-0">
-                <table
-                    class="table table-bordered table-striped table-hover table-responsive table-sm table-light table-success-subtle">
+                <table id="staffTable"
+                    class="table  table-bordered table-striped table-hover table-responsive table-sm table-light table-success-subtle">
                     <thead>
                         <tr>
                             <th>S/N </th>
@@ -50,7 +72,7 @@ session_start()
                         $stmt->execute();
                         $result = $stmt->get_result();
                         if (!$result) {
-                            echo "<tr><td colspan='7'>No staff found.</td></tr>";
+                            echo "<tr><td colspan='6'>No staff found.</td></tr>";
                         } else {
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
@@ -77,7 +99,7 @@ session_start()
             aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header bg-success-subtle border border-1 border-success-subtle">
+                    <div class="modal-header bg-success-subtle">
                         <h5 class="modal-title text-success" id="addStaffModalLabel">Add Staff</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -149,6 +171,17 @@ session_start()
             });
 
         }
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#staffTable').DataTable({
+            "pageLength": 10,  // Number of rows per page
+            "lengthMenu": [10, 25, 50],
+            "order": [[0, "asc"]], // Sort by first column descending
+        });
     });
 
 </script>
