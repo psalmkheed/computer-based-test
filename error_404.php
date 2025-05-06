@@ -45,6 +45,7 @@
     <div
         class="container-fluid d-flex justify-content-center align-items-center vh-100 bg-light display-6 fw-bolder text-danger flex-column">
         <h1 class="m-0 text-success" style="font-size: 300px;">404</h1><br>
+        <div class="text-center text-danger" style="font-size: 50px;">Invalid Request</div><br>
         YOU ARE NOT ALLOWED TO ACCESS THIS PAGE
         <button class="btn btn-success mt-3" onclick="window.location.href='index.php'">Go Back</button>
 

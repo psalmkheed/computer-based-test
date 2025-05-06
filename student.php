@@ -83,7 +83,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                 echo "<div class='dropdown'>
                                 <button class='btn btn-body border-0 dropdown-toggle' type='button' id='dropdownMenuButton'
                                     data-bs-toggle='dropdown' aria-expanded='false'>
-                                    <img src='/CBT/uploads/$photoPath' alt='Student Photo' style='width:35px;height:35px;border-radius:50%;'>
+                                    <img src='/CBT/uploads/$photoPath' alt='Student Photo' style='width:40px;height:40px;border-radius:50%;'>
                                 </button>
                                 <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
                                     <li><a class='dropdown-item' href='#'>Profile</a></li>

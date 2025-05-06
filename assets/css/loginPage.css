@@ -47,10 +47,14 @@ a {
   height: 100vh;
 }
 
-img .hide {
+.logo2 {
   display: none !important;
 }
-
+.logo1 {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 20px;
+}
 .loginForm {
   /* background-color: #eee; */
   padding: 20px;
@@ -88,8 +92,10 @@ img .hide {
     display: none !important;
   }
 
-  img .hide {
+  .logo2 {
     display: block !important;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .container-fluid {
@@ -98,7 +104,7 @@ img .hide {
 
   .loginForm {
     margin-top: 65px !important;
-    min-width: 65%;
+    width: 100%;
   }
 }
 

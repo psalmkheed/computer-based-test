@@ -53,7 +53,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                 style="height: 100vh; padding: 20px;">
                 <div class="" id="slide">
                     <div class="text-center text-danger">
-                        <img src="images/logo.png" style="width: 90px; height: 90px; margin-bottom: 20px;" alt="logo">
+                        <img src="images/logo.png" class="logo1" alt="logo">
                         <h1 class="display-4 fw-bold">WELCOME TO CBT CENTER</h1>
                         <p class="lead">Your gateway to success</p>
                         <p class="lead text-primary fw-bold">Please Login to take Exam <i
@@ -77,7 +77,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                 <div class="loginForm wrapper" id="slideIn">
                     <div class="card">
                         <div class="text-center p-3">
-                            <img src=" images/logo.png" class="hide"
+                            <img src=" images/logo.png" class="logo2"
                                 style="width: 75px; height: 75px; margin-bottom: 10px;" alt="logo">
                         </div>
                         <div class="card-header">

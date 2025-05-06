@@ -127,7 +127,6 @@ body {
 table,
 .table {
   font-size: 14px !important;
-  overflow: auto !important;
 }
 
 table th {

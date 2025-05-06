@@ -86,12 +86,12 @@ session_start();
                 class="col-12 col-lg-12 bg-success-subtle border border-1 border-success-subtle p-3 rounded-3 d-flex justify-content-between align-items-center">
                 <h5 class="text-success m-0"> Add & View Uploaded Exams</h5>
                 <div>
-                    <button class="btn btn-success " data-bs-toggle="modal" data-bs-target="#addExamModal">Add
+                    <button class="btn btn-success mb-1" data-bs-toggle="modal" data-bs-target="#addExamModal">Add
                         Exam</button>
-                    <button class="btn btn-success " data-bs-toggle="modal" data-bs-target="#viewExamModal">View
+                    <button class="btn btn-success mb-1" data-bs-toggle="modal" data-bs-target="#viewExamModal">View
                         Exam</button>
 
-                    <button class="btn btn-success " data-bs-toggle="modal" data-bs-target="#addQuestionModal">Add
+                    <button class="btn btn-success mb-1" data-bs-toggle="modal" data-bs-target="#addQuestionModal">Add
                         Question</button>
                 </div>
             </div>
@@ -451,6 +451,10 @@ session_start();
     <script>
         $(document).ready(function () {
             $('#examTable').DataTable({
+                responsive: true,
+
+                "paging": true, // Enable pagination
+                "searching": true, // Enable searching
                 "order": [], // Disable default ordering
                 "pageLength": 10, // Set default page length
                 "lengthMenu": [10, 25, 50], // Custom page length options
