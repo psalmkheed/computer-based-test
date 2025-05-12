@@ -15,6 +15,7 @@ session_start()
     <!-- DataTables CSS and JS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
 
     <style>
         :root {
@@ -39,6 +40,31 @@ session_start()
         .border-success-subtle {
             border-color: var(--bs-success-border) !important;
         }
+        .dataTables_wrapper .dataTables_filter,
+.dataTables_length {
+  margin-bottom: 10px !important;
+}
+.dataTables_wrapper .dataTables_paginate {
+  margin-top: 20px !important;
+}
+
+.dataTables_wrapper .dataTables_info {
+  margin-top: 20px !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0.5rem 1rem !important;
+  margin: 0 0.1rem !important;
+  border-radius: 0.25rem !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background-color: var(--bs-success-subtle) !important;
+  color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background-color: var(--bs-success) !important;
+  color: #fff !important;
+}
+
     </style>
 
 </head>

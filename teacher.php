@@ -44,16 +44,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 <!-- div col-lg-2 for the sideBar with sticky position-->
                 <div class="col-lg-2 p-0 sidebar sticky-lg-top  bg-success">
                     <div class="brand p-3">
-                        <h3 class="text-warning" id="brand">DO-ESTDOT</h3>
+                        <h3 class="text-warning" id="brandTeacher">DO-ESTDOT</h3>
                     </div>
                     <ul class="list-group">
-                        <li class="" id="manageStudent"><img src="images/icons/add_student.png" class="icon" width="30"
-                                height="30">Manage
-                            Student </li>
-
                         <!-- <li class="" id="addExam"><img src="images/icons/Plus.svg" class="icon" width="30" height="30">
                             Add Exam</li> -->
-                        <li class="" id="viewExam"><img src="images/icons/exam.png" class="icon" width="30"
+                        <li class="" id="addExamT"><img src="images/icons/exam.png" class="icon" width="30"
                                 height="30">Add & View Exam
                         </li>
                         <li class="" id="result"><img src="images/icons/result.png" class="icon" width="30"
@@ -78,7 +74,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                             if (isset($_SESSION['username']) && isset($_SESSION['loggedin']) && isset($_SESSION['fullname'])) {
                                 $username = $_SESSION['username'];
                                 $fullname = $_SESSION['fullname'];
-                                echo "<h6 class='text-danger'>Welcome, " . htmlspecialchars(strtoupper($fullname)) . "</h6>";
+                                echo "<h6 class='text-danger'>Welcome, " . htmlspecialchars(ucwords(strtolower($fullname))) . "</h6>";
                                 echo "<div class='dropdown'>
                                 <button class='btn btn-success dropdown-toggle' type='button' id='dropdownMenuButton'
                                     data-bs-toggle='dropdown' aria-expanded='false'>
@@ -100,31 +96,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     </div>
 
                     <!-- this is the div for loading pages dynamically using AJAX -->
-                    <div class="container-fluid my-3" id="mainContent" style="height: auto;">
-                        <div class=" row row-cols-2 row-cols-sm-1 row-cols-lg-4 g-2 g-lg-3">
-                            <div class="col">
-                                <div class="p-2 dashboardData rounded bg-success-subtle text-success"><i
-                                        class="fa-solid fa-user icon"></i>
-                                    <h4>STUDENTS</h4>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="p-2 dashboardData rounded bg-success-subtle text-success"><i
-                                        class="fa-solid fa-users icon"></i>
-                                    <h4>STAFF</h4>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="p-2 dashboardData rounded bg-success-subtle text-success">COL 3</div>
-                            </div>
-                            <div class="col">
-                                <div class="p-2 dashboardData rounded bg-success-subtle text-success">COL 4</div>
-                            </div>
+                    <div class="row p-4 " id="mainContentTeacher" style="height: auto;">
 
-                        </div>
+                        fgfgf
+
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </main>
     <footer>

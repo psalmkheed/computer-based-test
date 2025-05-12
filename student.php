@@ -40,26 +40,98 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
 <body>
     <main>
-        <div class="container-fluid">
+        <div class="container-fluid bg-success-subtle">
             <div class="row">
                 <!-- div col-lg-2 for the sideBar with sticky position-->
                 <div class="col-lg-2 p-0 sidebar sticky-lg-top bg-success">
                     <div class="brand p-3">
                         <h3 class="text-warning" id="">DO-ESTDOT</h3>
                     </div>
-                    <ul class="list-group">
-                        <li class="" id=""><img src="images/icons/exam.png" class="icon" width="30" height="30">Take
-                            Exam
-                        </li>
-                    </ul>
+                    <div class=" px-3">
+                        <p class="small mb-0">
+                            Admission Number
+                        </p>
+                        <p class="text-white">
+                            <?php
+                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['username'])) {
+                                echo htmlspecialchars(strtoupper($_SESSION['username']));
+                            } else {
+                                echo "Guest";
+                            }
+                            ?>
+                        </p>
+
+                        <p class="small mb-0">
+                            Name
+                        </p>
+                        <p class="text-white">
+                            <?php
+                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['fullname'])) {
+                                echo htmlspecialchars((strtoupper($_SESSION['fullname'])));
+                            } else {
+                                echo "Guest";
+                            }
+                            ?>
+                        </p>
+                        <hr>
+                        <p class="small mb-0">
+                            Session
+                        </p>
+                        <p class="text-white mb-0">
+                            <?php
+                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['session_id'])) {
+                                $session = $_SESSION['session_id'];
+                                // Fetch Session_id from student_registration table
+                                $stmt = $conn->prepare("SELECT * FROM classes WHERE session = ?");
+                                $stmt->bind_param("s", $session);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+
+                                if ($result && $row = $result->fetch_assoc()) {
+                                    $sessionId = $row['session'];
+                                    echo "<p class='text-white'>" . htmlspecialchars($session) . "</p>";
+                                } else {
+                                    echo "<p class='text-warning'>Session not found.</p>";
+                                }
+
+                                $stmt->close();
+
+                            }
+                            ?>
+
+                        </p>
+                        <hr>
+
+                        <p class="small mb-0">
+                            Class
+                        </p>
+                        <p class="text-white">
+                            <?php
+                            if (isset($_SESSION['loggedin'], $_SESSION['class']) && $_SESSION['loggedin'] === true) {
+                                echo htmlspecialchars(strtoupper($_SESSION['class']));
+                            } else {
+                                echo "Class not set";
+                            }
+                            ?>
+                        </p>
+                        <hr>
+                        <ul class="list-group">
+                            <li class="" id="startExam"><img src="images/icons/exam.png" class="icon" width="30"
+                                    height="30">Take
+                                Exam
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- div col-lg-10 for the sticky header and mainContent div for loading pages dynamically-->
-                <div class="col-lg-10 bg-body">
+                <div class="col-lg-10 ">
                     <!-- this is the sticky page header -->
-                    <div class="row p-3 position-sticky top-0 bg-body shadow-sm ">
+                    <div class="row p-2 position-sticky top-0 bg-body z-3 shadow-sm rounded-5  m-2">
                         <div class="col-lg-8 col-6 mb-0 d-flex align-items-center justify-content-between p-0">
-                            <h4 class="text-success">Student Dashboard</h4>
+                            <h4 class="text-success">Student Dashboard <span class="glyphicon glyphicon-search"
+                                    aria-hidden="true"></span>
+                            </h4>
                         </div>
                         <div class="col-lg-4 col-6 d-flex justify-content-evenly align-items-center p-0">
                             <?php
@@ -79,7 +151,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                     echo "Photo not found.";
                                 }
                                 $stmt->close();
-                                echo "<h6 class='text-danger'>Welcome, " . htmlspecialchars(strtoupper($fullname)) . "</h6>";
+                                echo "<h6 class='text-danger'>Welcome, " . htmlspecialchars((strtoupper($fullname))) . "</h6>";
                                 echo "<div class='dropdown'>
                                 <button class='btn btn-body border-0 dropdown-toggle' type='button' id='dropdownMenuButton'
                                     data-bs-toggle='dropdown' aria-expanded='false'>
@@ -101,7 +173,30 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     </div>
 
                     <!-- this is the div for loading pages dynamically using AJAX -->
-                    <div class="container-fluid my-3" id="mainContent" style="height: auto;">
+                    <div class="container-fluid my-3" id="mainContentStudent" style="height: auto;">
+                        <div class="row card">
+                            <div class="card card-header">
+                                <?php
+                                echo "<h5 class='text-dark'>" . htmlspecialchars((strtoupper($fullname))) . "</h5>";
+                                ?>
+                            </div>
+                            <div class="col-lg-12 card-body shadow-sm d-flex flex-row align-items-center">
+                                <div class="col-lg-2 me-3">
+                                    <?php
+                                    if ($result && $row = $result->fetch_assoc()) {
+                                        $photoPath = $row['Photo_Id']; // This should be the relative path to the image
+                                    } else {
+                                        echo "<img src='/CBT/uploads/$photoPath' alt='Student Photo' style='width:150px;height:150px;border-radius:50%;'>";
+                                    }
+                                    ?>
+                                </div>
+
+                                <div class="col-lg-10">
+                                    <h3 class="">Welcome to the Student Dashboard</h3>
+                                    <p class="">Select an option from the sidebar to get started.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

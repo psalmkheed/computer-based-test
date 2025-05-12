@@ -38,6 +38,33 @@ session_start()
         .border-success-subtle {
             border-color: var(--bs-success-border) !important;
         }
+
+        .dataTables_wrapper .dataTables_filter,
+.dataTables_length {
+  margin-bottom: 10px !important;
+}
+.dataTables_wrapper .dataTables_paginate {
+  margin-top: 20px !important;
+}
+
+.dataTables_wrapper .dataTables_info {
+  margin-top: 20px !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0.5rem 1rem !important;
+  margin: 0 0.1rem !important;
+  border-radius: 0.25rem !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background-color: var(--bs-success-subtle) !important;
+  color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background-color: var(--bs-success) !important;
+  color: #fff !important;
+}
+
+
     </style>
 
 </head>
@@ -56,9 +83,9 @@ session_start()
             include '../connection/db_connection.php';
             $sql = "SELECT * FROM classes";
             $result = $conn->query($sql);
-            echo "<table id='classTable' class='table table-striped table-hover table-responsive table-sm table-light table-success-subtle'>";
+            echo "<table id='classTable' class='table table-bordered table-striped table-hover table-responsive table-sm table-light table-success-subtle'>";
             echo "<thead><tr>
-    <th>S/N</th>
+        <th >S/N</th>
         <th>Class</th>
         <th>Session</th>
         <th>Teacher</th>

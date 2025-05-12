@@ -33,6 +33,13 @@ a {
   text-decoration: underline dotted !important;
 }
 
+.bg-purple {
+  background-color: purple !important;
+}
+
+.bg-gold {
+  background-color: gold !important;
+}
 .text-danger {
   color: var(--primary) !important;
 }

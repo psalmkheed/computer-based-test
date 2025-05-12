@@ -36,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             exit;
         }
         $stmt->close();
-
         // Check Student
         $stmt = $conn->prepare("SELECT * FROM student_registration WHERE Registration_Number = ? AND Surname = ?");
         $stmt->bind_param("ss", $username, $password);
@@ -45,20 +44,23 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $_SESSION['username'] = $row['Registration_Number'];
+            $_SESSION['student_id'] = $row['Registration_Number'];
             $_SESSION['fullname'] = $row['Surname'] . " " . $row['First_Name']; // Store full name
+            $_SESSION['session_id'] = $row['Session']; // Store session ID
+            $_SESSION['class'] = $row['Current_Class']; // Store class
             $_SESSION['loggedin'] = true;
             $_SESSION['role'] = 'student';
             echo "student";
             exit;
+        } else {
+            echo "Invalid username or password.";
         }
-        $stmt->close();
 
-        echo "Invalid username or password.";
-    } else {
-        echo "Please fill in all fields.";
+        $stmt->close();
+        $conn->close();
     }
 
-    $conn->close();
 } else {
     header("Location: ../error_404.php");
 }
+

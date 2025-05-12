@@ -4,6 +4,10 @@ $(document).ready(function () {
     window.location.href = "admin.php";
   });
 
+  $("#mainContentTeacher").load("pages/admin_manageStudent.php");
+  $("#brandTeacher").on("click", function () {
+    window.location.href = "teacher.php";
+  });
   $("#manageStudent").on("click", function () {
     $("#mainContent").load("pages/admin_manageStudent.php");
   });
@@ -16,10 +20,21 @@ $(document).ready(function () {
   $("#addExam").on("click", function () {
     $("#mainContent").load("pages/admin_addExam.php");
   });
+  // This is for the teacher's page
+  $("#addExamT").on("click", function () {
+    $("#mainContentTeacher").load("pages/admin_viewExam.php");
+  });
   $("#viewExam").on("click", function () {
     $("#mainContent").load("pages/admin_viewExam.php");
   });
-  $("#result").on("click", function () {
-    $("#mainContent").load("pages/admin_class.php");
+
+  $("#startExam").on("click", function () {
+    $("#mainContentStudent").load("student/exams.php");
+  });
+
+  $("#next").on("click", function () {
+    $("#mainContentStudent").load(
+      "student/start_exam.php?exam_id=<?= urlencode($exam['exam_id']) ?"
+    );
   });
 });

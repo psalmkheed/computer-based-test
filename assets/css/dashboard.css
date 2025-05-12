@@ -102,12 +102,13 @@ body {
 
 /* dashboard overview styles  */
 .dashboardData {
-  min-height: 200px;
+  min-height: 150px;
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 1em;
-  flex-direction: column;
+  flex-direction: row;
+  box-sizing: border-box;
+  padding: 10px;
 }
 
 .dashboardData:hover {
@@ -118,7 +119,7 @@ body {
 }
 
 .icon {
-  font-size: 90px;
+  font-size: 20px;
   color: var(--bs-success);
   cursor: pointer;
 }
@@ -135,4 +136,66 @@ table th {
 
 table td {
   font-weight: normal !important;
+}
+
+table .table thead,
+tr,
+th {
+  background-color: var(--bs-success-subtle) !important;
+}
+
+table.dataTable thead > tr > th.sorting:after,
+table.dataTable thead > tr > th.sorting_asc:after,
+table.dataTable thead > tr > th.sorting_desc:after,
+table.dataTable thead > tr > th.sorting_asc_disabled:after,
+table.dataTable thead > tr > th.sorting_desc_disabled:after,
+table.dataTable thead > tr > td.sorting:after,
+table.dataTable thead > tr > td.sorting_asc:after,
+table.dataTable thead > tr > td.sorting_desc:after,
+table.dataTable thead > tr > td.sorting_asc_disabled:after,
+table.dataTable thead > tr > td.sorting_desc_disabled:after {
+  top: 50%;
+  content: "▼";
+  content: "▼" / "";
+  color: red;
+}
+
+table.dataTable thead > tr > th.sorting::before,
+table.dataTable thead > tr > th.sorting_asc::before,
+table.dataTable thead > tr > th.sorting_desc::before,
+table.dataTable thead > tr > th.sorting_asc_disabled::before,
+table.dataTable thead > tr > th.sorting_desc_disabled::before,
+table.dataTable thead > tr > td.sorting::before,
+table.dataTable thead > tr > td.sorting_asc::before,
+table.dataTable thead > tr > td.sorting_desc::before,
+table.dataTable thead > tr > td.sorting_asc_disabled::before,
+table.dataTable thead > tr > td.sorting_desc_disabled::before {
+  bottom: 50%;
+  content: "▲" / "";
+  color: red;
+}
+
+.dataTables_wrapper .dataTables_filter,
+.dataTables_length {
+  margin-bottom: 10px !important;
+}
+.dataTables_wrapper .dataTables_paginate {
+  margin-top: 20px !important;
+}
+
+.dataTables_wrapper .dataTables_info {
+  margin-top: 20px !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0.5rem 1rem !important;
+  margin: 0 0.1rem !important;
+  border-radius: 0.25rem !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background-color: var(--bs-success-subtle) !important;
+  color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background-color: var(--bs-success) !important;
+  color: #fff !important;
 }

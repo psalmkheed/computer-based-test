@@ -10,7 +10,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <html lang="en">
 
 <head>
-    <title>Admin - Dashboard</title>
+    <title>Do-Estdot International School Admin - Dashboard</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -38,7 +38,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
 <body>
     <main>
-        <div class="container-fluid">
+        <div class="container-fluid bg-success-subtle">
             <div class="row">
                 <!-- div col-lg-2 for the sideBar with sticky position-->
                 <div class="col-lg-2 p-0 sidebar sticky-lg-top bg-success">
@@ -68,11 +68,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 </div>
 
                 <!-- div col-lg-10 for the sticky header and mainContent div for loading pages dynamically-->
-                <div class="col-lg-10 bg-body">
+                <div class="col-lg-10 ">
                     <!-- this is the sticky page header -->
-                    <div class="row p-3 position-sticky top-0 bg-body z-3 shadow-sm ">
+                    <div class="row p-2 position-sticky top-0 bg-body z-3 shadow-sm rounded-5  m-2">
                         <div class="col-lg-8 col-8 mb-0 d-flex align-items-center justify-content-between">
-                            <h4 class="text-success">Admin Dashboard</h4>
+                            <h4 class="text-success">
+                                Admin Dashboard</h4>
                             <form class="d-flex" action="connection/search.php" method="GET">
                                 <input type="search" class="form-control me-2 searchBar" name="search"
                                     placeholder="Search"
@@ -86,7 +87,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                             <?php
                             if (isset($_SESSION['username']) && isset($_SESSION['loggedin'])) {
                                 $username = htmlspecialchars($_SESSION['username']);
-                                echo "<h6 class='text-danger'>Welcome, " . htmlspecialchars(strtoupper($username)) . "</h6>";
+                                echo "<h6 class='text-danger'>Welcome, " . htmlspecialchars(ucfirst(strtolower($username))) . "</h6>";
                                 echo "<div class='dropdown'>
                                 <button class='btn btn-success dropdown-toggle' type='button' id='dropdownMenuButton'
                                     data-bs-toggle='dropdown' aria-expanded='false'>
@@ -108,30 +109,76 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
                     <!-- this is the div for loading pages dynamically using AJAX -->
                     <div class="container-fluid my-3" id="mainContent" style="height: auto;">
-                        <div class=" row row-cols-1 row-cols-sm-1 row-cols-lg-4 g-2 g-lg-3">
+                        <div class="row row-cols-2 row-cols-sm-2 row-cols-lg-4 g-2 g-lg-3">
                             <div class="col">
-                                <div class="p-2 dashboardData rounded bg-success-subtle text-success"><i
-                                        class="fa-solid fa-user icon"></i>
-                                    <h4>STUDENTS</h4>
+                                <div class="dashboardData rounded bg-success-subtle text-success">
+                                    <div class="bg-info  p-3 rounded-circle">
+                                        <i class="fa-regular fa-user icon text-white w-25"></i>
+                                    </div>
+                                    <p class="lead">Total Student</p>
+                                    <?php
+                                    include "connection/db_connection.php";
+                                    $result = $conn->query("SELECT COUNT(*) AS total FROM student_registration");
+                                    if ($row = $result->fetch_assoc()) {
+                                        echo "<p class='fs-1'>" . $row['total'] . "</p>";
+                                    }
+                                    ?>
                                 </div>
+
                             </div>
                             <div class="col">
-                                <div class="p-2 dashboardData rounded bg-success-subtle text-success"><i
-                                        class="fa-solid fa-users icon"></i>
-                                    <h4>STAFF</h4>
+                                <div class="dashboardData rounded bg-success-subtle text-success">
+                                    <div class="bg-primary  p-3 rounded-circle">
+                                        <i class="fa-regular fa-users icon text-white"></i>
+                                    </div>
+                                    <p class="lead">Total Staff</p>
+                                    <?php
+                                    include "connection/db_connection.php";
+                                    $result = $conn->query("SELECT COUNT(*) AS total FROM staff_registration");
+                                    if ($row = $result->fetch_assoc()) {
+                                        echo "<p class='fs-1'>" . $row['total'] . "</p>";
+                                    }
+                                    ?>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="p-2 dashboardData rounded bg-success-subtle text-success">COL 3</div>
-                            </div>
-                            <div class="col">
-                                <div class="p-2 dashboardData rounded bg-success-subtle text-success">COL 4</div>
                             </div>
 
+                            <div class="col">
+                                <div class="p-2 dashboardData rounded bg-success-subtle text-success">
+                                    <div class="bg-warning  p-3 rounded-circle">
+                                        <i class="fa-regular fa-users icon text-white"></i>
+                                    </div>
+                                    <p class="lead">Parent</p>
+                                    <?php
+                                    include "connection/db_connection.php";
+                                    $result = $conn->query("SELECT COUNT(*) AS total FROM student_registration");
+                                    if ($row = $result->fetch_assoc()) {
+                                        echo "<p class='fs-1'>" . $row['total'] . "</p>";
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="p-2 dashboardData rounded bg-success-subtle text-success">
+                                    <div class="bg-danger  p-3 rounded-circle">
+                                        <i class="fa-regular fa-users icon text-white"></i>
+                                    </div>
+                                    <p class="lead">Administrator</p>
+                                    <?php
+                                    include "connection/db_connection.php";
+                                    $result = $conn->query("SELECT COUNT(*) AS total FROM users");
+                                    if ($row = $result->fetch_assoc()) {
+                                        echo "<p class='fs-1'>" . $row['total'] . "</p>";
+                                    }
+                                    ?>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </main>
     <footer>
