@@ -3,7 +3,11 @@ require '../connection/db_connection.php';
 session_start();
 
 if (!isset($_GET['exam_id'])) {
-  die("Error: No exam selected. Please go back and choose an exam.");
+
+  echo "<br><button class='btn btn-success'><a href='../student.php' >Go back to exams</a></button><br>";
+  die("Error: No exam selected. Please go back and choose an exam."
+  );
+
 }
 if (!isset($_SESSION['student_id'])) {
   header("Location: ../index.php");

@@ -48,72 +48,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         <h3 class="text-warning" id="">DO-ESTDOT</h3>
                     </div>
                     <div class=" px-3">
-                        <p class="small mb-0">
-                            Admission Number
-                        </p>
-                        <p class="text-white">
-                            <?php
-                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['username'])) {
-                                echo htmlspecialchars(strtoupper($_SESSION['username']));
-                            } else {
-                                echo "Guest";
-                            }
-                            ?>
-                        </p>
-
-                        <p class="small mb-0">
-                            Name
-                        </p>
-                        <p class="text-white">
-                            <?php
-                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['fullname'])) {
-                                echo htmlspecialchars((strtoupper($_SESSION['fullname'])));
-                            } else {
-                                echo "Guest";
-                            }
-                            ?>
-                        </p>
-                        <hr>
-                        <p class="small mb-0">
-                            Session
-                        </p>
-                        <p class="text-white mb-0">
-                            <?php
-                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['session_id'])) {
-                                $session = $_SESSION['session_id'];
-                                // Fetch Session_id from student_registration table
-                                $stmt = $conn->prepare("SELECT * FROM classes WHERE session = ?");
-                                $stmt->bind_param("s", $session);
-                                $stmt->execute();
-                                $result = $stmt->get_result();
-
-                                if ($result && $row = $result->fetch_assoc()) {
-                                    $sessionId = $row['session'];
-                                    echo "<p class='text-white'>" . htmlspecialchars($session) . "</p>";
-                                } else {
-                                    echo "<p class='text-warning'>Session not found.</p>";
-                                }
-
-                                $stmt->close();
-
-                            }
-                            ?>
-
-                        </p>
-                        <hr>
-
-                        <p class="small mb-0">
-                            Class
-                        </p>
-                        <p class="text-white">
-                            <?php
-                            if (isset($_SESSION['loggedin'], $_SESSION['class']) && $_SESSION['loggedin'] === true) {
-                                echo htmlspecialchars(strtoupper($_SESSION['class']));
-                            } else {
-                                echo "Class not set";
-                            }
-                            ?>
-                        </p>
                         <hr>
                         <ul class="list-group">
                             <li class="" id="startExam"><img src="images/icons/exam.png" class="icon" width="30"
@@ -135,9 +69,23 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         </div>
                         <div class="col-lg-4 col-6 d-flex justify-content-evenly align-items-center p-0">
                             <?php
-                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['username']) && isset($_SESSION['fullname'])) {
+                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['username']) && isset($_SESSION['short_name']) && isset($_SESSION['fullname']) && isset($_SESSION['age'])) {
+                                // Fetch Session_id from student_registration table
+                                $stmt = $conn->prepare("SELECT * FROM classes WHERE session = ?");
+                                $stmt->bind_param("s", $session);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                                $stmt->close();
+
+                                $session = $_SESSION['session_id'];
                                 $username = $_SESSION['username'];
+                                $shortname = $_SESSION['short_name'];
                                 $fullname = $_SESSION['fullname'];
+                                $class = $_SESSION['class'];
+                                $age = $_SESSION['age'];
+                                $today = new DateTime(); // current date
+                                $dob = new DateTime($age);
+                                $age = $dob->diff($today)->y;
 
                                 // Assuming students are logged in and using Registration_number
                                 $stmt = $conn->prepare("SELECT Photo_Id FROM student_registration WHERE Registration_number = ?");
@@ -151,7 +99,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                     echo "Photo not found.";
                                 }
                                 $stmt->close();
-                                echo "<h6 class='text-danger'>Welcome, " . htmlspecialchars((strtoupper($fullname))) . "</h6>";
+                                echo "<h6 class='text-danger'>Welcome, " . htmlspecialchars((strtoupper($shortname))) . "</h6>";
                                 echo "<div class='dropdown'>
                                 <button class='btn btn-body border-0 dropdown-toggle' type='button' id='dropdownMenuButton'
                                     data-bs-toggle='dropdown' aria-expanded='false'>
@@ -174,26 +122,31 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
                     <!-- this is the div for loading pages dynamically using AJAX -->
                     <div class="container-fluid my-3" id="mainContentStudent" style="height: auto;">
-                        <div class="row card">
-                            <div class="card card-header">
+                        <div class="row card shadow-sm ">
+                            <div class="card card-header border-0 border-bottom-1">
                                 <?php
-                                echo "<h5 class='text-dark'>" . htmlspecialchars((strtoupper($fullname))) . "</h5>";
+                                echo "<h5 class='text-dark p-0 m-0'>" . htmlspecialchars((strtoupper($fullname))) . "</h5>";
                                 ?>
                             </div>
-                            <div class="col-lg-12 card-body shadow-sm d-flex flex-row align-items-center">
+                            <div class="col-lg-12 card-body d-flex flex-row align-items-center">
                                 <div class="col-lg-2 me-3">
                                     <?php
-                                    if ($result && $row = $result->fetch_assoc()) {
-                                        $photoPath = $row['Photo_Id']; // This should be the relative path to the image
-                                    } else {
-                                        echo "<img src='/CBT/uploads/$photoPath' alt='Student Photo' style='width:150px;height:150px;border-radius:50%;'>";
-                                    }
+                                    echo "<img src='/CBT/uploads/$photoPath' alt='Student Photo' style='width:150px;height:150px;border-radius:50%;'>";
                                     ?>
                                 </div>
 
                                 <div class="col-lg-10">
-                                    <h3 class="">Welcome to the Student Dashboard</h3>
-                                    <p class="">Select an option from the sidebar to get started.</p>
+                                    <h3 class="text-danger">Welcome to the CBT Dashboard</h3>
+                                    <?php
+                                    if (isset($_SESSION['session_id']) && isset($_SESSION['class'])) {
+                                        echo "<p class='text-success'>Admission Number: " . htmlspecialchars(strtoupper($username)) . "</p>";
+                                        echo "<p class='text-success'>Session: " . htmlspecialchars(strtoupper($session)) . "</p>";
+                                        echo "<p class='text-success'>Class: " . htmlspecialchars(strtoupper($class)) . "</p>";
+                                        echo "<p class='text-success'>Age: " . htmlspecialchars($age) . " years" . "</p>";
+                                    } else {
+                                        echo "<p class='text-danger'>Session and Class not set</p>";
+                                    }
+                                    $_SESSION['class'] ?>
                                 </div>
                             </div>
                         </div>

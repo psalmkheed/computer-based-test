@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Set Questions</title>
-      <!-- Bootstrap CSS v5.2.1 -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -39,17 +39,20 @@
             border-color: var(--bs-success-border) !important;
         }
     </style>
-    </head>
+</head>
 
 <body>
-    <main class="container-fluid">  
+    <main class="container-fluid">
 
-<form action="set_questions.php" method="POST" class="form">
-  <input type="text" name="subject" required placeholder="Subject" class="form-control my-3">
-  <input type="number" name="num_questions" required placeholder="Number of Questions" class="form-control mb-3">
-  <input type="number" name="duration" required placeholder="Duration (in minutes)" class="form-control mb-3">
-  <input type="date" name="expiry_date" required class="form-control mb-3">
-  <button type="submit" class="btn btn-success form-control mb-3">Next</button>
-</form>
+        <form action="teacher/set_questions.php" method="POST" class="form">
+            <input type="text" name="subject" required placeholder="Subject" class="form-control my-3">
+            <input type="number" name="num_questions" required placeholder="Number of Questions"
+                class="form-control mb-3">
+            <input type="number" name="duration" required placeholder="Duration (in minutes)" class="form-control mb-3">
+            <input type="date" name="expiry_date" required class="form-control mb-3">
+            <button type="submit" class="btn btn-success form-control mb-3">Next</button>
+        </form>
     </main>
-</body></html>
+</body>
+
+</html>

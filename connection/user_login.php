@@ -45,9 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             $row = $result->fetch_assoc();
             $_SESSION['username'] = $row['Registration_Number'];
             $_SESSION['student_id'] = $row['Registration_Number'];
-            $_SESSION['fullname'] = $row['Surname'] . " " . $row['First_Name']; // Store full name
+            $_SESSION['fullname'] = $row['Surname'] . " " . $row['First_Name'] . " " . $row['Other_Name']; // Store full name
+            $_SESSION['short_name'] = $row['Surname'] . " " . $row['First_Name']; // Store short name
             $_SESSION['session_id'] = $row['Session']; // Store session ID
             $_SESSION['class'] = $row['Current_Class']; // Store class
+            $_SESSION['age'] = $row['DOB']; // Store age
             $_SESSION['loggedin'] = true;
             $_SESSION['role'] = 'student';
             echo "student";

@@ -4,7 +4,7 @@ $(document).ready(function () {
     window.location.href = "admin.php";
   });
 
-  $("#mainContentTeacher").load("pages/admin_manageStudent.php");
+  // $("#mainContentTeacher").load("teacher/set_exam.php");
   $("#brandTeacher").on("click", function () {
     window.location.href = "teacher.php";
   });

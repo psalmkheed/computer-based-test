@@ -98,7 +98,15 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     <!-- this is the div for loading pages dynamically using AJAX -->
                     <div class="row p-4 " id="mainContentTeacher" style="height: auto;">
 
-                        fgfgf
+                        <form action="teacher/set_questions.php" method="POST" class="form">
+                            <input type="text" name="subject" required placeholder="Subject" class="form-control my-3">
+                            <input type="number" name="num_questions" required placeholder="Number of Questions"
+                                class="form-control mb-3">
+                            <input type="number" name="duration" required placeholder="Duration (in minutes)"
+                                class="form-control mb-3">
+                            <input type="date" name="expiry_date" required class="form-control mb-3">
+                            <button type="submit" class="btn btn-success form-control mb-3">Next</button>
+                        </form>
 
                     </div>
                 </div>
