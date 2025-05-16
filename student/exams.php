@@ -22,27 +22,32 @@ while ($row = $exams_result->fetch_assoc()) {
 
 <head>
     <title>Available Exams</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 </head>
 
 <body class="container mt-5">
-    <h2 class="mb-4">Available Exams</h2>
+    <h2 class="mb-3">Available Exams</h2>
 
-    <table class="table table-bordered">
-        <thead class="table-dark">
+    <table class="table table-bordered table-striped table-hover ">
+        <caption>
+            List of available exams
+        </caption>
+        <thead>
             <tr>
-                <th>Subject</th>
-                <th>No. of Questions</th>
-                <th>Duration (minutes)</th>
-                <th>Expiry Date</th>
-                <th>Action</th>
+                <th scope="col">Subject</th>
+                <th scope="col">No. of Questions</th>
+                <th scope="col">Duration (minutes)</th>
+                <th scope="col">Expiry Date</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($exams as $exam): ?>
                 <?php
                 $exam_id = $exam['exam_id'];
-                $taken = $conn->query("SELECT * FROM results WHERE student_id = '$student_id' AND exam_id = '$exam_id'")->num_rows > 0;
+                $where_stmt = "WHERE student_id = '$student_id' AND exam_id = '$exam_id'";
+                $taken = $conn->query("SELECT * FROM results $where_stmt")->num_rows > 0;
                 ?>
                 <tr>
                     <td><?= htmlspecialchars($exam['subject']) ?></td>
@@ -50,12 +55,13 @@ while ($row = $exams_result->fetch_assoc()) {
                     <td><?= $exam['duration'] ?></td>
                     <td><?= $exam['expiry_date'] ?></td>
                     <td>
-                        <?php if (strtotime($exam['expiry_date']) >= time()): ?>
+                        <?php
+                        if (strtotime($exam['expiry_date']) >= time()): ?>
                             <?php if ($taken): ?>
-                                <span class="text-success">Taken</span>
+                                <span class="text-muted">Taken</span>
                             <?php else: ?>
                                 <a href="student/start_exam.php?exam_id=<?= urlencode($exam_id) ?>"
-                                    class="btn btn-primary btn-sm">Start Exam</a>
+                                    class="btn btn-success btn-sm">Start Exam</a>
                             <?php endif; ?>
                         <?php else: ?>
                             <span class="text-danger">Expired</span>

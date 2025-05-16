@@ -14,6 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             echo "Class created successfully!";
         } else {
             echo "Error: " . $stmt->error;
+            
+            
+
         }
         // Close the statement and connection
         $stmt->close();

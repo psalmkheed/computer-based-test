@@ -72,22 +72,22 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     <!-- this is the sticky page header -->
                     <div class="row p-2 position-sticky top-0 bg-body z-3 shadow-sm rounded-5  m-2">
                         <div class="col-lg-8 col-8 mb-0 d-flex align-items-center justify-content-between">
-                            <h4 class="text-success">
-                                Admin Dashboard</h4>
+                            <p class="text-success mb-0">
+                                Admin Dashboard</p>
                             <form class="d-flex" action="connection/search.php" method="GET">
                                 <input type="search" class="form-control me-2 searchBar" name="search"
-                                    placeholder="Search"
+                                    style="border-radius:50px 0 0 50px; margin: 0 !important;" placeholder="Search"
                                     value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-                                <button type="submit" class="btn btn-outline-success">Search</button>
+                                <button type="submit" class="btn btn-success btn-sm"
+                                    style="border-radius:0  50px 50px 0;">Search</button>
                             </form>
-
                         </div>
                         <div class="col-lg-4 col-4 d-flex justify-content-evenly align-items-center">
                             <!-- if logged in it will display the following -->
                             <?php
                             if (isset($_SESSION['username']) && isset($_SESSION['loggedin'])) {
                                 $username = htmlspecialchars($_SESSION['username']);
-                                echo "<h6 class='text-danger'>Welcome, " . htmlspecialchars(ucfirst(strtolower($username))) . "</h6>";
+                                echo "<p class='text-danger mb-0'>Welcome," . " " . htmlspecialchars(ucfirst(strtolower($username))) . "</p>";
                                 echo "<div class='dropdown'>
                                 <button class='btn btn-success dropdown-toggle' type='button' id='dropdownMenuButton'
                                     data-bs-toggle='dropdown' aria-expanded='false'>
@@ -106,7 +106,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                             ?>
                         </div>
                     </div>
-
                     <!-- this is the div for loading pages dynamically using AJAX -->
                     <div class="container-fluid my-3" id="mainContent" style="height: auto;">
                         <div class="row row-cols-2 row-cols-sm-2 row-cols-lg-4 g-2 g-lg-3">

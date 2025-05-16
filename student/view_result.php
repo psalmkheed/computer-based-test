@@ -3,7 +3,7 @@ require '../connection/db_connection.php';
 session_start();
 
 if (!isset($_SESSION['student_id'], $_GET['exam_id'])) {
-    die("Invalid request.");
+    header('Location: ../student.php');
 }
 
 $student_id = $_SESSION['student_id'];
@@ -22,12 +22,6 @@ while ($q = $qResult->fetch_assoc()) {
 // Get student answers
 $answers = [];
 $res = $conn->query("SELECT * FROM results WHERE exam_id = '$exam_id' AND student_id = '$student_id'");
-if ($res && $res->num_rows > 0) {
-    // Optionally show score
-} else {
-    // Not yet submitted (fallback or redirect)
-    die("No result found for this exam.");
-}
 
 // Rebuild answers from POST data (you should store them later)
 $student_answers_result = $conn->query("SELECT question_number, selected_option FROM student_answers WHERE exam_id = '$exam_id' AND student_id = '$student_id'");
@@ -57,6 +51,20 @@ while ($row = $student_answers_result->fetch_assoc()) {
 
 <body class="container mt-4">
     <h2>Result for <?= $exam['subject'] ?></h2>
+    <?php
+    if ($res && $res->num_rows > 0) {
+        // Optionally show score
+        while ($r = $res->fetch_assoc()) {
+            $score = $r['score'];
+            $total = $r['total'];
+            $percentage = round(($score / $total) * 100, 2);
+            echo "<h3>Your Score: $score / $total ($percentage%)</h3>";
+        }
+    } else {
+        // Not yet submitted (fallback or redirect)
+        die("No result found for this exam.");
+    }
+    ?>
 
     <?php foreach ($questions as $q):
         $qn = $q['question_number'];

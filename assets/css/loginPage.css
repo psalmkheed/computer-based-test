@@ -136,9 +136,8 @@ a {
 ::placeholder {
   color: #000 !important;
   opacity: 0.5 !important;
-  font-style: italic !important;
   font-weight: 300 !important;
-  font-size: 12px !important;
+  font-size: 14px !important;
 }
 
 input:focus {

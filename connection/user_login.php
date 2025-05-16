@@ -1,7 +1,6 @@
 <?php
 include("../connection/db_connection.php");
 session_start();
-
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
         $username = htmlspecialchars(trim($_POST['username']));
@@ -57,7 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         } else {
             echo "Invalid username or password.";
         }
-
         $stmt->close();
         $conn->close();
     }

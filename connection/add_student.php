@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Sanitize inputs
-    $regNumber = htmlspecialchars($_POST['registrationNumber']);
+    $regNumber = htmlspecialchars($_POST[$requiredFields['0']]);
     $surname = htmlspecialchars($_POST['surname']);
     $fname = htmlspecialchars($_POST['firstName']);
     $otherName = htmlspecialchars($_POST['otherName'] ?? '');

@@ -61,11 +61,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 <!-- div col-lg-10 for the sticky header and mainContent div for loading pages dynamically-->
                 <div class="col-lg-10 ">
                     <!-- this is the sticky page header -->
-                    <div class="row p-2 position-sticky top-0 bg-body z-3 shadow-sm rounded-5  m-2">
+                    <div class="row ps-3 position-sticky top-0 bg-body z-3 shadow-sm rounded-5  m-2">
                         <div class="col-lg-8 col-6 mb-0 d-flex align-items-center justify-content-between p-0">
-                            <h4 class="text-success">Student Dashboard <span class="glyphicon glyphicon-search"
+                            <p class="text-success m-0">Student Dashboard <span class="glyphicon glyphicon-search"
                                     aria-hidden="true"></span>
-                            </h4>
+                            </p>
                         </div>
                         <div class="col-lg-4 col-6 d-flex justify-content-evenly align-items-center p-0">
                             <?php
@@ -76,7 +76,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                 $stmt->execute();
                                 $result = $stmt->get_result();
                                 $stmt->close();
-
                                 $session = $_SESSION['session_id'];
                                 $username = $_SESSION['username'];
                                 $shortname = $_SESSION['short_name'];
@@ -99,11 +98,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                     echo "Photo not found.";
                                 }
                                 $stmt->close();
-                                echo "<h6 class='text-danger'>Welcome, " . htmlspecialchars((strtoupper($shortname))) . "</h6>";
+                                echo "<h6 class='text-danger m-0'>Welcome, " . htmlspecialchars((strtoupper($shortname))) . "</h6>";
                                 echo "<div class='dropdown'>
                                 <button class='btn btn-body border-0 dropdown-toggle' type='button' id='dropdownMenuButton'
                                     data-bs-toggle='dropdown' aria-expanded='false'>
-                                    <img src='/CBT/uploads/$photoPath' alt='Student Photo' style='width:40px;height:40px;border-radius:50%;'>
+                                    <img src='/CBT/uploads/$photoPath' alt='Student Photo' style='width:30px;height:30px;border-radius:50%;'>
                                 </button>
                                 <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
                                     <li><a class='dropdown-item' href='#'>Profile</a></li>
@@ -125,29 +124,33 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         <div class="row card shadow-sm ">
                             <div class="card card-header border-0 border-bottom-1">
                                 <?php
-                                echo "<h5 class='text-dark p-0 m-0'>" . htmlspecialchars((strtoupper($fullname))) . "</h5>";
+                                echo "<h5 class='text-dark m-0'>" . htmlspecialchars((strtoupper($fullname))) . "</h5>";
                                 ?>
                             </div>
                             <div class="col-lg-12 card-body d-flex flex-row align-items-center">
-                                <div class="col-lg-2 me-3">
-                                    <?php
-                                    echo "<img src='/CBT/uploads/$photoPath' alt='Student Photo' style='width:150px;height:150px;border-radius:50%;'>";
+                                <div class="col-lg-1 me-5">
+                                    <?= "<img src='/CBT/uploads/$photoPath' class='shadow-md' alt='Student Photo' style='width:120px;height:120px;border-radius:50%;'>";
                                     ?>
                                 </div>
-
-                                <div class="col-lg-10">
-                                    <h3 class="text-danger">Welcome to the CBT Dashboard</h3>
+                                <!-- left column -->
+                                <div class="col-lg-11">
+                                    <?php
+                                    $cosine = cos(75);
+                                    ?>
+                                    <h3 class="text-danger ">Welcome to the CBT Dashboard</h3>
                                     <?php
                                     if (isset($_SESSION['session_id']) && isset($_SESSION['class'])) {
-                                        echo "<p class='text-success'>Admission Number: " . htmlspecialchars(strtoupper($username)) . "</p>";
-                                        echo "<p class='text-success'>Session: " . htmlspecialchars(strtoupper($session)) . "</p>";
-                                        echo "<p class='text-success'>Class: " . htmlspecialchars(strtoupper($class)) . "</p>";
-                                        echo "<p class='text-success'>Age: " . htmlspecialchars($age) . " years" . "</p>";
+                                        echo "<p class='text-success mb-1'>Admission Number: " . htmlspecialchars(strtoupper($username)) . "</p>";
+                                        echo "<p class='text-success mb-1'>Session: " . htmlspecialchars(strtoupper($session)) . "</p>";
+                                        echo "<p class='text-success mb-1'>Class: " . htmlspecialchars(strtoupper($class)) . "</p>";
+                                        echo "<p class='text-success mb-1'>Age: " . htmlspecialchars($age) . " years" . "</p>";
                                     } else {
                                         echo "<p class='text-danger'>Session and Class not set</p>";
                                     }
-                                    $_SESSION['class'] ?>
+                                    ?>
                                 </div>
+
+
                             </div>
                         </div>
                     </div>

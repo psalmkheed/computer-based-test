@@ -66,7 +66,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     <!-- this is the sticky page header -->
                     <div class="row p-3 position-sticky top-0 bg-body z-3 shadow-sm ">
                         <div class="col-lg-8 col-6 mb-0 d-flex align-items-center justify-content-between">
-                            <h4 class="text-success">Teacher's Dashboard</h4>
+                            <h5 class="text-success">Teacher's Dashboard</h5>
 
                         </div>
                         <div class="col-lg-4 col-6 d-flex justify-content-evenly align-items-center">

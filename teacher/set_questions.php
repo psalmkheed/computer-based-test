@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Save previous question input into session
     if (isset($_POST['question_number'])) {

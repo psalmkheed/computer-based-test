@@ -65,8 +65,8 @@ while ($q = $questions->fetch_assoc()) {
 
   <div id="questionContainer"></div>
 
-  <button type="button" onclick="showNextQuestion()">Next</button>
-  <button type="button" id="submitBtn" onclick="submitLast()">Submit</button>
+  <button type="button" class="btn btn-success" onclick="showNextQuestion()">Next</button>
+  <button type="button" class="btn btn-success" id="submitBtn" onclick="submitLast()">Submit</button>
 
   <script>
     function submitLast() {
