@@ -57,8 +57,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     <div class="container-fluid">
         <div class="row d-flex justify-content-between align-items-center ">
             <!-- col-6 for information -->
-            <div class="col-lg-6 col-md-6 bg-light d-flex justify-content-center align-items-center hidden "
-                style="height: 100vh; padding: 20px;">
+            <div class="col-lg-6 col-md-6 bg-light d-flex justify-content-center align-items-center hidden p-5 rounded-end-5"
+                style="height: 100vh; ">
                 <div class="" id="slide">
                     <div class="text-center text-danger">
                         <img src="images/logo.png" class="logo1" alt="logo">
@@ -71,14 +71,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                         </p>
                         <?php echo EMAIL ?>
                         <br>
-
-
-
-
                         <p class="lead"><i class="fa-solid fa-circle-exclamation"></i> &nbsp;Attention</p>
                         <marquee behavior="scroll" direction="left" scrollamount="5" loop="infinite"
                             style="font-size: 16px; font-weight: bold; color:brown;"><?php echo WARNING ?></marquee>
-
                     </div>
                 </div>
             </div>
@@ -92,11 +87,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                                 style="width: 75px; height: 75px; margin-bottom: 10px;" alt="logo">
                         </div>
                         <div class="bg-white border-bottom border-secondary-subtle">
-                            <h3 class="card-title text-center h3-hover text-success">Log IN</h3>
+                            <h3 class="card-title text-center h3-hover text-success">Login to Portal</h3>
                         </div>
                         <div class="card-body ">
-                            <!-- error validation div -->
-                            <div id="errorText" style="color: red; text-align: center; font-size: 14px;"></div>
                             <form id="login_Form" method="POST" autocomplete="off">
                                 <div class="form-group">
                                     <!-- <label for="username" class="text-muted lead mb-1"
@@ -110,12 +103,29 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                                     <input type="password" class="form-control mb-4" name="password" id="password"
                                         placeholder="Enter your surname">
                                 </div>
-                                <div id="errorText" class="text-danger mb-3"></div>
+                                
                                 <!-- To show validation errors -->
-                                <button type="submit" id="loginBtn" class="btn btn-success w-100 py-2  fs-4">LOG
-                                    IN</button>
-                            </form>
+                                <button type="submit" id="loginBtn" class="btn btn-success">Log
+                                    In &#127877;</button>
+                                    <div id="messageBox" class="alert alert-danger text-center mt-3" style="display: none;"></div>
 
+                            </form>
+<!-- <audio
+  src="https://cdn.freecodecamp.org/curriculum/js-music-player/can't-stay-down.mp3"
+  loop
+  controls
+  muted
+></audio><br>
+<iframe
+ 
+  height="100"
+  src="https://www.youtube.com/embed/PkZNo7MFNFg?si=-UBVIUNM3csdeiWF"
+  title="YouTube video player"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+ 
+  width="300"
+></iframe> -->
                         </div>
 
                     </div>

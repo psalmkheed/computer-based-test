@@ -1,10 +1,10 @@
 $(document).ready(function () {
   // Handle form submission for adding exams
-  $("#addExamForm").on("submit", function (e) {
+  $("#addExamForm").on("submit", (e) => {
     e.preventDefault(); // Prevent the default form submission
 
     // Get form data
-    var formData = $(this).serialize();
+    var formData = $(e.target).serialize();
 
     // Send an AJAX request to add the exam
     $.ajax({

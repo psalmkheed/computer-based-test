@@ -46,6 +46,14 @@ while ($row = $student_answers_result->fetch_assoc()) {
         .wrong {
             background-color: #f8d7da;
         }
+
+               th, td {
+        vertical-align: middle !important;
+    }
+
+    td{
+        text-align: left;
+    }
     </style>
 </head>
 
@@ -66,27 +74,53 @@ while ($row = $student_answers_result->fetch_assoc()) {
     }
     ?>
 
-    <?php foreach ($questions as $q):
-        $qn = $q['question_number'];
-        $correct = strtolower(trim($q['correct_option']));
-        $student_answer = $answers[$qn] ?? '';
+    <table class="table table-bordered text-center">
+    <thead class="table-dark">
+        <tr>
+            <th>Q.No</th>
+            <th>Question</th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>D</th>
+            <th>Your Answer</th>
+            <th>Correct Answer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($questions as $q):
+            $qn = $q['question_number'];
+            $correct = strtolower(trim($q['correct_option']));
+            $student_answer = $answers[$qn] ?? '';
+            $options = ['a' => $q['option_a'], 'b' => $q['option_b'], 'c' => $q['option_c'], 'd' => $q['option_d']];
         ?>
-        <div class="card mb-3 <?= ($student_answer === $correct) ? 'correct' : 'wrong' ?>">
-            <div class="card-body">
-                <h5>Q<?= $q['question_number'] ?>: <?= $q['question'] ?></h5>
-                <ul class="list-unstyled">
-                    <li <?= ($correct == 'a') ? 'style="font-weight:bold;"' : '' ?>>A. <?= $q['option_a'] ?></li>
-                    <li <?= ($correct == 'b') ? 'style="font-weight:bold;"' : '' ?>>B. <?= $q['option_b'] ?></li>
-                    <li <?= ($correct == 'c') ? 'style="font-weight:bold;"' : '' ?>>C. <?= $q['option_c'] ?></li>
-                    <li <?= ($correct == 'd') ? 'style="font-weight:bold;"' : '' ?>>D. <?= $q['option_d'] ?></li>
-                </ul>
-                <p><strong>Your Answer:</strong> <?= strtoupper($student_answer) ?: 'Not Answered' ?></p>
-                <p><strong>Correct Answer:</strong> <?= strtoupper($correct) ?></p>
-            </div>
-        </div>
-    <?php endforeach; ?>
+                            <tr>
+                                <td><?= $qn ?></td>
+                            <td class="text-start"><?= htmlspecialchars($q['question']) ?></td>
+                            <?php foreach ($options as $key => $value):
+                                $class = '';
 
-    <a href="../student.php" class="btn btn-success">Back to Dashboard</a>
+                                if ($key === $correct && $key === $student_answer) {
+                                    $class = 'table-success'; // correct and selected
+                                } elseif ($key === $student_answer && $key !== $correct) {
+                                    $class = 'table-danger'; // selected but wrong
+                                } elseif ($key === $correct) {
+                                    $class = 'table-success'; // correct but not selected
+                                }
+
+                                echo "<td class='$class'>" . htmlspecialchars($value) . "</td>";
+                            endforeach; ?>
+                            <td><?= strtoupper($student_answer ?: 'N/A') ?></td>
+                            <td><?= strtoupper($correct) ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+    </tbody>
+    </table>
+    
+    
+    <a href="../student.php" class="btn btn-success">Back to Dashboard</a> <button class="btn btn-primary my-3"
+        onclick="window.print()">🖨️ Print Result</button>
+
 </body>
 
 </html>

@@ -46,23 +46,23 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         <h3 class="text-warning" id="brand">DO-ESTDOT</h3>
                     </div>
                     <ul class="list-group">
-                        <li class="" id="manageStudent"><img src="images/icons/add_student.png" class="icon" width="30"
-                                height="30">Manage
+                        <li class="" id="manageStudent"><img src="images/icons/add_student.png" loading="lazy"
+                                class="icon" width="30" height="30">Manage
                             Student </li>
-                        <li class="" id="addStaff"><img src="images/icons/staff.png" class="icon" width="30"
-                                height="30">Staff</li>
+                        <li class="" id="addStaff"><img src="images/icons/staff.png" loading="lazy" class="icon"
+                                width="30" height="30">Staff</li>
                         <!-- <li class="" id="addExam"><img src="images/icons/Plus.svg" class="icon" width="30" height="30">
                             Add Exam</li> -->
-                        <li class="" id="viewExam"><img src="images/icons/exam.png" class="icon" width="30"
-                                height="30">Add & View Exam
+                        <li class="" id="viewExam"><img src="images/icons/exam.png" loading="lazy" class="icon"
+                                width="30" height="30">Add & View Exam
                         </li>
-                        <li class="" id="subject"><img src="images/icons/exam.png" class="icon" width="30"
-                                height="30">Subject
+                        <li class="" id="subject"><img src="images/icons/exam.png" loading="lazy" class="icon"
+                                width="30" height="30">Subject
                         </li>
-                        <li class="" id="result"><img src="images/icons/result.png" class="icon" width="30"
-                                height="30">Classes</li>
-                        <li class="" id="manageAccount"><img src="images/icons/manage_accounts.png" class="icon"
-                                width="30" height="30">Manage Account</li>
+                        <li class="" id="result"><img src="images/icons/result.png" loading="lazy" class="icon"
+                                width="30" height="30">Classes</li>
+                        <li class="" id="manageAccount"><img src="images/icons/manage_accounts.png" loading="lazy"
+                                class="icon" width="30" height="30">Manage Account</li>
 
                     </ul>
                 </div>

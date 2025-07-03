@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             echo "student";
             exit;
         } else {
-            echo "Invalid username or password.";
+            echo "Incorrect username or password.";
         }
         $stmt->close();
         $conn->close();

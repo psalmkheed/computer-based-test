@@ -6,7 +6,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,8 +49,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     <div class=" px-3">
                         <hr>
                         <ul class="list-group">
-                            <li class="" id="startExam"><img src="images/icons/exam.png" class="icon" width="30"
-                                    height="30">Take
+                            <li class="" id="startExam"><img src="images/icons/exam.png" loading="lazy" class="icon"
+                                    width="30" height="30">Take
                                 Exam
                             </li>
                         </ul>
@@ -102,7 +101,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                 echo "<div class='dropdown'>
                                 <button class='btn btn-body border-0 dropdown-toggle' type='button' id='dropdownMenuButton'
                                     data-bs-toggle='dropdown' aria-expanded='false'>
-                                    <img src='/CBT/uploads/$photoPath' alt='Student Photo' style='width:30px;height:30px;border-radius:50%;'>
+                                    <img src='/CBT/uploads/$photoPath' loading='lazy' alt='Student Photo' style='width:30px;height:30px;border-radius:50%;'>
                                 </button>
                                 <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
                                     <li><a class='dropdown-item' href='#'>Profile</a></li>
@@ -129,7 +128,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                             </div>
                             <div class="col-lg-12 card-body d-flex flex-row align-items-center">
                                 <div class="col-lg-1 me-5">
-                                    <?= "<img src='/CBT/uploads/$photoPath' class='shadow-md' alt='Student Photo' style='width:120px;height:120px;border-radius:50%;'>";
+                                    <?= "<img src='/CBT/uploads/$photoPath' loading='lazy' class='shadow-md' alt='Student Photo' style='width:120px;height:120px;border-radius:50%;'>";
                                     ?>
                                 </div>
                                 <!-- left column -->
